@@ -18,7 +18,9 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         self.tableView.dataSource = self
         
-        dataArray.append(DataModel(recipeImage: UIImage(named: "Nico_Rosberg")!, title: "abdsaiu", time: "385", serves: "Nico Rosberg", cost: "Mercedes"))
+        dataArray.append(DataModel(recipeImage: UIImage(named: "1")!, title: "Double Layer Pumpkin Cheesecake", time: "4h10m", serves: "8", cost: "U$ 18.00"))
+        dataArray.append(DataModel(recipeImage: UIImage(named: "2")!, title: "Pumpkin Ginger Cupcakes", time: "1h30m", serves: "24", cost: "U$ 23.00"))
+        dataArray.append(DataModel(recipeImage: UIImage(named: "3")!, title: "Oven Baked Omelet", time: "49m", serves: "6", cost: "U$ 5,00"))
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
