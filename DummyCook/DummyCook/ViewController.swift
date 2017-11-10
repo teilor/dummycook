@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
             let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! DataCell
-        cell.data = dataArray[indexPath.row]
+           cell.data = dataArray[indexPath.row]
     
         return cell
     }
