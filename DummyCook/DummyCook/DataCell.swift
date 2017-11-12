@@ -15,9 +15,13 @@ class DataCell: UITableViewCell {
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var serves: UILabel!
     @IBOutlet weak var cost: UILabel!
+    @IBOutlet weak var tableViewCell: UIView!
     
     var data: DataModel! {
         didSet {
+            recipeImage.layer.cornerRadius = 20
+            tableViewCell.layer.cornerRadius = 20
+
             title.text = data.title
             time.text = data.time
             serves.text = data.serves
