@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04890F611FB9C52100606602 /* Receita.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04890F601FB9C52100606602 /* Receita.swift */; };
-		04890F631FB9C53300606602 /* Passo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04890F621FB9C53300606602 /* Passo.swift */; };
-		04890F651FB9C54400606602 /* Ingredientes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04890F641FB9C54400606602 /* Ingredientes.swift */; };
 		87168A971FB478FB00B60D57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87168A961FB478FB00B60D57 /* AppDelegate.swift */; };
 		87168A991FB478FB00B60D57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87168A981FB478FB00B60D57 /* ViewController.swift */; };
 		87168A9C1FB478FB00B60D57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87168A9A1FB478FB00B60D57 /* Main.storyboard */; };
@@ -24,9 +21,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04890F601FB9C52100606602 /* Receita.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receita.swift; sourceTree = "<group>"; };
-		04890F621FB9C53300606602 /* Passo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passo.swift; sourceTree = "<group>"; };
-		04890F641FB9C54400606602 /* Ingredientes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredientes.swift; sourceTree = "<group>"; };
 		87168A931FB478FB00B60D57 /* DummyCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DummyCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87168A961FB478FB00B60D57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87168A981FB478FB00B60D57 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,9 +70,6 @@
 				87168A961FB478FB00B60D57 /* AppDelegate.swift */,
 				87168A981FB478FB00B60D57 /* ViewController.swift */,
 				87168A9A1FB478FB00B60D57 /* Main.storyboard */,
-				04890F601FB9C52100606602 /* Receita.swift */,
-				04890F621FB9C53300606602 /* Passo.swift */,
-				04890F641FB9C54400606602 /* Ingredientes.swift */,
 				876E87431FB9BA9100E0BE8D /* StepsListViewController.swift */,
 				876E87411FB9B8FA00E0BE8D /* StepsViewController.swift */,
 				87C070801FB5D96E002E69AF /* DetailsViewController.swift */,
@@ -168,11 +159,8 @@
 				876E87441FB9BA9100E0BE8D /* StepsListViewController.swift in Sources */,
 				87168A9F1FB478FB00B60D57 /* DummyCook.xcdatamodeld in Sources */,
 				876E87421FB9B8FA00E0BE8D /* StepsViewController.swift in Sources */,
-				04890F651FB9C54400606602 /* Ingredientes.swift in Sources */,
 				87C070811FB5D96E002E69AF /* DetailsViewController.swift in Sources */,
 				877BD8911FB485AD00C0A709 /* DataCell.swift in Sources */,
-				04890F611FB9C52100606602 /* Receita.swift in Sources */,
-				04890F631FB9C53300606602 /* Passo.swift in Sources */,
 				87168A971FB478FB00B60D57 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

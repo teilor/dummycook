@@ -17,8 +17,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
     
-    var receita: Receita!
-    var receitasArray = [Receita]()
+    var receita: CDReceita!
+    var receitasArray = [CDReceita]()
+    var passosArray = [CDPasso]()
     
     
     override func viewDidLoad() {
@@ -34,9 +35,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let container = appDelegate.persistentContainer
         
         // 5. Operacao de feth
-        let request =  NSFetchRequest<NSFetchRequestResult>(entityName: "Receita")
+        let request =  NSFetchRequest<NSFetchRequestResult>(entityName: "CDReceita")
+        let request2 =  NSFetchRequest<NSFetchRequestResult>(entityName: "CDPasso")
         
-        let results = try! container.viewContext.fetch(request) as! [Receita]
+        let results = try! container.viewContext.fetch(request) as! [CDReceita]
+        let results2 = try! container.viewContext.fetch(request2) as! [CDPasso]
         
         // o objeto piloto recebe o primeiro dado do result
         self.receita = results.first
@@ -46,43 +49,57 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             print("Criei as receitas")
 
             
-            let receita1 = NSEntityDescription.insertNewObject(forEntityName: "Receita", into: container.viewContext) as! Receita
-            let receita2 = NSEntityDescription.insertNewObject(forEntityName: "Receita", into: container.viewContext) as! Receita
             
-            let passo1_1 = NSEntityDescription.insertNewObject(forEntityName: "Passo", into: container.viewContext) as! Passo
-            let passo1_2 = NSEntityDescription.insertNewObject(forEntityName: "Passo", into: container.viewContext) as! Passo
+            let receita1 = NSEntityDescription.insertNewObject(forEntityName: "CDReceita", into: container.viewContext) as! CDReceita
+            let receita2 = NSEntityDescription.insertNewObject(forEntityName: "CDReceita", into: container.viewContext) as! CDReceita
             
-            let passo2_1 = NSEntityDescription.insertNewObject(forEntityName: "Passo", into: container.viewContext) as! Passo
-            let passo2_2 = NSEntityDescription.insertNewObject(forEntityName: "Passo", into: container.viewContext) as! Passo
+            let passo1_1 = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
+            let passo1_2 = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
+            
+            let passo2_1 = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
+            let passo2_2 = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
             
             
-            receita1.nome = "Brazilian Flan"
+            receita1.nome = "Double Layer Pumpkin Cheesecake"
             receita1.textoIngredientes = "blablalbablablabla"
+            receita1.imagemReceita = "1"
             
-            passo1_1.imagem = "2"
+            passo1_1.imagemPasso = "2"
             passo1_1.video = ""
             passo1_1.texto = "Misture os ingredientes"
             
-            passo1_2.imagem = "1"
+            passo1_2.imagemPasso = "1"
             passo1_2.video = ""
             passo1_2.texto = "Aqueça até descolar da panela"
             
-            receita1.listaPassos.append(passo1_1)
-            receita1.listaPassos.append(passo1_2)
             
-            receita2.nome = "Feijão"
+            receita1.addToRelationship(passo1_1)
+            receita1.addToRelationship(passo1_2)
+            
+            //receita1.listaPassos.append(passo1_1)
+            //receita1.listaPassos.append(passo1_2)
+            
+            receita2.nome = "Pumpkin Ginger Cupcakes"
             receita2.textoIngredientes = "blablalbablablabla"
+            receita2.imagemReceita = "2"
             
-            passo2_1.imagem = "2"
+            passo2_1.imagemPasso = "2"
             passo2_1.video = ""
             passo2_1.texto = "Misture os ingredientes"
             
-            passo2_2.imagem = "1"
+            passo2_2.imagemPasso = "1"
             passo2_2.video = ""
             passo2_2.texto = "Aqueça até descolar da panela"
             
-            receita2.listaPassos.append(passo2_1)
-            receita2.listaPassos.append(passo2_2)
+            
+            receita2.addToRelationship(passo2_1)
+            receita2.addToRelationship(passo2_2)
+            
+            
+            //receita2.listaPassos.append(passo2_1)
+            //receita2.listaPassos.append(passo2_2)
+            
+            
             
             
             receitasArray.append(receita1)
@@ -91,6 +108,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
         }else{
             self.receitasArray = results
+            self.passosArray = results2
             print("Carreguei as receitas")
         }
         
@@ -111,8 +129,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-    let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! DataModel
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! DataCell
         cell.data = receitasArray[indexPath.row]
         return cell
     }
@@ -121,6 +138,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         myIndex = indexPath.row
         performSegue(withIdentifier: "segue", sender: self)
     }
- 
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if( segue.identifier == "segue" ) {
+            let dest = segue.destination as! DetailsViewController
+            dest.data = receitasArray[1]
+        }
+        
+    }
 }

@@ -17,16 +17,24 @@ class DataCell: UITableViewCell {
     @IBOutlet weak var cost: UILabel!
     @IBOutlet weak var tableViewCell: UIView!
     
-    var data: Receita! {
+    var data: CDReceita! {
         didSet {
             recipeImage.layer.cornerRadius = 20
             tableViewCell.layer.cornerRadius = 20
-
-            title.text = data.title
-            time.text = data.time
-            serves.text = data.serves
-            cost.text = data.cost
-            recipeImage.image = data.recipeImage
+            
+            
+            print(data)
+            
+            
+            //let passos = data.relationship!.allObjects as! [CDPasso]
+            recipeImage.image = UIImage(named: data.imagemReceita!)
+            
+            
+            title.text = data.nome
+            //time.text = data.time
+            serves.text = data.textoIngredientes
+            //cost.text = data.cost
+            //recipeImage.image = data.recipeImage
         }
     }
     

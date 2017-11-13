@@ -11,7 +11,7 @@ import UIKit
 class Receita: NSObject {
 
     var nome: String = ""
-    var listaPassos = [Passo]()
+    var listaPassos = [CDPasso]()
     var listaIngredientes = [Ingredientes]()
     var textoIngredientes: String = ""
     
