@@ -139,11 +139,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         performSegue(withIdentifier: "segue", sender: self)
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if( segue.identifier == "segue" ) {
             let dest = segue.destination as! DetailsViewController
-            dest.data = receitasArray[1]
+            dest.data = receitasArray[myIndex]
         }
         
     }
+    
+    
 }
