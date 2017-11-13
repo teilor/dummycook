@@ -17,7 +17,7 @@ class DataCell: UITableViewCell {
     @IBOutlet weak var cost: UILabel!
     @IBOutlet weak var tableViewCell: UIView!
     
-    var data: DataModel! {
+    var data: Receita! {
         didSet {
             recipeImage.layer.cornerRadius = 20
             tableViewCell.layer.cornerRadius = 20
