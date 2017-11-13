@@ -12,6 +12,8 @@
 		87168A9C1FB478FB00B60D57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87168A9A1FB478FB00B60D57 /* Main.storyboard */; };
 		87168A9F1FB478FB00B60D57 /* DummyCook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87168A9D1FB478FB00B60D57 /* DummyCook.xcdatamodeld */; };
 		87168AA41FB478FB00B60D57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87168AA21FB478FB00B60D57 /* LaunchScreen.storyboard */; };
+		876E87421FB9B8FA00E0BE8D /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E87411FB9B8FA00E0BE8D /* StepsViewController.swift */; };
+		876E87441FB9BA9100E0BE8D /* StepsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E87431FB9BA9100E0BE8D /* StepsListViewController.swift */; };
 		877BD88F1FB483D400C0A709 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877BD88E1FB483D400C0A709 /* DataModel.swift */; };
 		877BD8911FB485AD00C0A709 /* DataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877BD8901FB485AD00C0A709 /* DataCell.swift */; };
 		87C070811FB5D96E002E69AF /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C070801FB5D96E002E69AF /* DetailsViewController.swift */; };
@@ -26,6 +28,8 @@
 		87168A9E1FB478FB00B60D57 /* DummyCook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DummyCook.xcdatamodel; sourceTree = "<group>"; };
 		87168AA31FB478FB00B60D57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87168AA51FB478FB00B60D57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		876E87411FB9B8FA00E0BE8D /* StepsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsViewController.swift; sourceTree = "<group>"; };
+		876E87431FB9BA9100E0BE8D /* StepsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsListViewController.swift; sourceTree = "<group>"; };
 		877BD88E1FB483D400C0A709 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		877BD8901FB485AD00C0A709 /* DataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCell.swift; sourceTree = "<group>"; };
 		87C070801FB5D96E002E69AF /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 				87168A961FB478FB00B60D57 /* AppDelegate.swift */,
 				87168A981FB478FB00B60D57 /* ViewController.swift */,
 				87168A9A1FB478FB00B60D57 /* Main.storyboard */,
+				876E87431FB9BA9100E0BE8D /* StepsListViewController.swift */,
+				876E87411FB9B8FA00E0BE8D /* StepsViewController.swift */,
 				87C070801FB5D96E002E69AF /* DetailsViewController.swift */,
 				877BD8901FB485AD00C0A709 /* DataCell.swift */,
 				877BD88E1FB483D400C0A709 /* DataModel.swift */,
@@ -150,7 +156,9 @@
 			files = (
 				87168A991FB478FB00B60D57 /* ViewController.swift in Sources */,
 				877BD88F1FB483D400C0A709 /* DataModel.swift in Sources */,
+				876E87441FB9BA9100E0BE8D /* StepsListViewController.swift in Sources */,
 				87168A9F1FB478FB00B60D57 /* DummyCook.xcdatamodeld in Sources */,
+				876E87421FB9B8FA00E0BE8D /* StepsViewController.swift in Sources */,
 				87C070811FB5D96E002E69AF /* DetailsViewController.swift in Sources */,
 				877BD8911FB485AD00C0A709 /* DataCell.swift in Sources */,
 				87168A971FB478FB00B60D57 /* AppDelegate.swift in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 
 class DetailsViewController: UIViewController {
     
-        @IBOutlet weak var recipeTitle: UILabel!
+    @IBOutlet weak var recipeTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,4 +18,12 @@ class DetailsViewController: UIViewController {
         recipeTitle.text = "Index da receita clicada: " + String(myIndex)
     }
 
+    @IBAction func goToSteps(_ sender: UIButton) {
+        performSegue(withIdentifier: "segueToSteps", sender: self)
+    }
+    
+    
+    @IBAction func goToStepsList(_ sender: UIButton) {
+        performSegue(withIdentifier: "segueToStepsList", sender: self)
+    }
 }
