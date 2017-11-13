@@ -43,6 +43,19 @@ class DetailsViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if( segue.identifier == "segueToSteps" ) {
+            //let dest = segue.destination as! StepsViewController
+           // dest.data = receitasArray[myIndex]
+        }
+        if(segue.identifier == "segueToStepsList"){
+            let dest = segue.destination as! StepsListViewController
+            let passos = data.relationship!.allObjects as! [CDPasso]
+            dest.listaDePassos = passos
+        }
+        
+    }
+    
 
     @IBAction func goToSteps(_ sender: UIButton) {
         performSegue(withIdentifier: "segueToSteps", sender: self)

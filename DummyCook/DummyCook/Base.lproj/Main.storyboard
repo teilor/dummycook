@@ -242,6 +242,41 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GZ4-xI-Rb4">
                                 <rect key="frame" x="10" y="94.5" width="355" height="572.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellPasso" rowHeight="82" id="hht-cg-iHN" customClass="DataCellPassosTableViewCell" customModule="DummyCook" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="355" height="82"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hht-cg-iHN" id="qLv-fp-VHz">
+                                            <rect key="frame" x="0.0" y="0.0" width="355" height="81.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iq0-en-f1K">
+                                                    <rect key="frame" x="8" y="11" width="86" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Titulo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dqk-97-6gP">
+                                                    <rect key="frame" x="115" y="11" width="43" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Descricao" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoG-wU-rzu">
+                                                    <rect key="frame" x="115" y="32" width="228" height="39"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descricaoPasso" destination="LoG-wU-rzu" id="8HY-UC-4tG"/>
+                                            <outlet property="imagemPasso" destination="iq0-en-f1K" id="yaW-rD-eEF"/>
+                                            <outlet property="tituloPasso" destination="Dqk-97-6gP" id="nLD-50-i0U"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -257,7 +292,8 @@
                         <viewLayoutGuide key="safeArea" id="aTx-Wg-VdE"/>
                     </view>
                     <connections>
-                        <outlet property="recipeTitle" destination="HBY-Li-0fU" id="Zfl-Hx-1fP"/>
+                        <outlet property="tableViewPassos" destination="GZ4-xI-Rb4" id="cON-O2-4dy"/>
+                        <outlet property="tituloReceita" destination="HBY-Li-0fU" id="O3A-1G-tan"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y0z-Wd-jzO" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,15 +8,25 @@
 
 import UIKit
 
-class StepsListViewController: UIViewController {
+class StepsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var recipeTitle: UILabel!
+    @IBOutlet weak var tableViewPassos: UITableView!
+
+    @IBOutlet weak var tituloReceita: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tituloReceita.text = "AAA"
+        
+        print(listaDePassos)
+        print(listaDePassos[1].texto!)
+        print(listaDePassos[1].imagemPasso!)
 
-        recipeTitle.text = "Passos da receita com o index " + String(myIndex)
+    
+        tableViewPassos.reloadData()
     }
+    
+    var listaDePassos: [CDPasso]!
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -24,14 +34,20 @@ class StepsListViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listaDePassos.count
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       let cell = tableView.dequeueReusableCell(withIdentifier: "cellPasso", for: indexPath) as! DataCellPassosTableViewCell
+       cell.passoCelula = listaDePassos[indexPath.row]
+        return cell
+    }
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        myIndex = indexPath.row
+//        performSegue(withIdentifier: "segue", sender: self)
+//    }
+//
 }
