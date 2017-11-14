@@ -61,7 +61,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             var passosReceita: [String] = []
             var contArray = 0
-
+            
             //Estrutura do array: [0]Texto do passo, [1]Se tem imagem,[2]Se tem video,[3]Se tem timer
             passosReceita += ["Melt the sugar in a pan over low heat, stiring constantly, until the sugar becomes a golden brown syrup.", "","step1.mov",""] //Passo 1 com video
             passosReceita += ["Once the sugar becomes a golden brown syrup, it`s ready. Switch the stove off.", "step2","",""] //Passo 2 com foto
@@ -121,18 +121,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
                 let passo = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
                 
-                    switch contArray{
-                    case 0:
-                        passo.texto = passosReceita[indice]
-                    case 1:
-                        passo.imagemPasso = passosReceita[indice]
-                    case 2:
-                        passo.video = passosReceita[indice]
-                    case 3:
-                        passo.timer = passosReceita[indice]
-                    default:
-                        print("Placeholder")
-                    }
+                switch contArray{
+                case 0:
+                    passo.texto = passosReceita[indice]
+                case 1:
+                    passo.imagemPasso = passosReceita[indice]
+                case 2:
+                    passo.video = passosReceita[indice]
+                case 3:
+                    passo.timer = passosReceita[indice]
+                default:
+                    print("Placeholder")
+                }
                 
                 contArray += 1
                 
@@ -142,7 +142,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
             }
             passosReceita = [""]
-
+            
             receita3.nome = "Pumpkin Ginger Cupcakes"
             receita3.textoIngredientes = [""] as NSArray
             receita3.time = "1h 20min"
@@ -150,7 +150,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             receita3.textoRequirements = "1 beater"
             receita3.imagemReceita = "2"
             receita3.cost = "R$ 24,00"
-         
+            
             //Estrutura do array: [0]Texto do passo, [1]Se tem imagem,[2]Se tem video,[3]Se tem timer
             passosReceita += ["Turn on your oven to 325 degrees F (165 degrees C) and let it preheat", "preheat","",""] //Passo 1
             passosReceita += ["In a large bowl, combine cream cheese, sugar and vanilla and beat until smooth","mixing","",""] //Passo 2
@@ -196,7 +196,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         try! container.viewContext.save()
         
         tableView.reloadData()
-        
         
         }
 

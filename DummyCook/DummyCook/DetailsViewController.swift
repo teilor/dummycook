@@ -23,7 +23,7 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textoIngredientes.text = data.textoIngredientes
+        //textoIngredientes.text = data.textoIngredientes
         imagemReceita.image = UIImage(named: data.imagemReceita!)
         imagemReceita.layer.cornerRadius = 10
         imagemReceita.layer.masksToBounds = true
