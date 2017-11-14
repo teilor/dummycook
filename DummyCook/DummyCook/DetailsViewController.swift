@@ -15,10 +15,9 @@ class DetailsViewController: UIViewController {
     @IBOutlet var recipeTitle: UILabel!
     @IBOutlet var imagemReceita: UIImageView!
     @IBOutlet weak var textRequirements: UILabel!
-    @IBOutlet var textoIngredientes: UILabel!
-   
     @IBOutlet weak var startButton: UIButton!
     
+    @IBOutlet weak var textIngredientes: UITextView!
     @IBOutlet weak var stepsButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
