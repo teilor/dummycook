@@ -58,7 +58,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             receita1.textoRequirements = "Oven, Pan, Cake Tin and Stoven"
             receita1.imagemReceita = "brflan"
             receita1.cost = "R$16,00"
-            
+        
             struct DescricaoPasso {
                 var text: String
                 var titulo : String
@@ -69,12 +69,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
                 init(text: String, imagemPasso: String, video: String, timer: String, indice: Int16, titulo: String) {
                     self.text = text
+                    self.titulo = titulo
                     self.imagemPasso = imagemPasso
                     self.video = video
                     self.timer = timer
-                    self.titulo = timer
                     self.indice = indice
-                    self.titulo = titulo
                 }
                 
             }
@@ -101,9 +100,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 passo.imagemPasso = passosReceita[indice].imagemPasso
                 passo.video = passosReceita[indice].video
                 passo.timer = passosReceita[indice].timer
+                passo.tituloDoPasso = passosReceita[indice].titulo
                 
                 receita1.addToRelationship(passo)
-                
             }
             
             passosReceita = []
@@ -131,6 +130,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 passo.imagemPasso = passosReceita[indice].imagemPasso
                 passo.video = passosReceita[indice].video
                 passo.timer = passosReceita[indice].timer
+                passo.tituloDoPasso = passosReceita[indice].titulo
+                
+                receita2.addToRelationship(passo)
             }
             
             passosReceita = []
@@ -156,7 +158,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 passo.imagemPasso = passosReceita[indice].imagemPasso
                 passo.video = passosReceita[indice].video
                 passo.timer = passosReceita[indice].timer
+                passo.tituloDoPasso = passosReceita[indice].titulo
 
+                receita3.addToRelationship(passo)
             }
             
             receitasArray.append(receita1)
