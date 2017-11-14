@@ -24,7 +24,10 @@ class DetailsViewController: UIViewController {
         
         //textoIngredientes.text = (data.textoIngredientes?.description ?? 0)
 
-        textIngredientes.text = (data.textoIngredientes as! [String]).joined(separator: "\n")
+        //print(data.textoIngredientes)
+        print("AQUI AQUI AQUI")
+        //print((data.textoIngredientes?.description. ?? 0))
+        //textoIngredientes.text = data.textoIngredientes?.description
         
         imagemReceita.image = UIImage(named: data.imagemReceita!)
         imagemReceita.layer.cornerRadius = 10

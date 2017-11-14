@@ -12,19 +12,16 @@ import CoreData
 class StepsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableViewPassos: UITableView!
-
     @IBOutlet weak var tituloReceita: UILabel!
-    
+    var listaDePassos: [CDPasso]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Step 1 of " + String(listaDePassos.count)
         self.tableViewPassos.dataSource = self
         self.tableViewPassos.delegate = self
-        
         tituloReceita.text = recipeTitle
-
-    
         tableViewPassos.reloadData()
     }
     

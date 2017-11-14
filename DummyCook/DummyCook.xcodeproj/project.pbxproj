@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04890F671FB9ED1A00606602 /* DataCellPassosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04890F661FB9ED1A00606602 /* DataCellPassosTableViewCell.swift */; };
+		3B3382231FBB655200B3536C /* videoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3382221FBB655200B3536C /* videoPlayer.swift */; };
 		87168A971FB478FB00B60D57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87168A961FB478FB00B60D57 /* AppDelegate.swift */; };
 		87168A991FB478FB00B60D57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87168A981FB478FB00B60D57 /* ViewController.swift */; };
 		87168A9C1FB478FB00B60D57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87168A9A1FB478FB00B60D57 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		04890F661FB9ED1A00606602 /* DataCellPassosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCellPassosTableViewCell.swift; sourceTree = "<group>"; };
+		3B3382221FBB655200B3536C /* videoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = videoPlayer.swift; sourceTree = "<group>"; };
 		87168A931FB478FB00B60D57 /* DummyCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DummyCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87168A961FB478FB00B60D57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87168A981FB478FB00B60D57 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				87168A9A1FB478FB00B60D57 /* Main.storyboard */,
 				876E87431FB9BA9100E0BE8D /* StepsListViewController.swift */,
 				876E87411FB9B8FA00E0BE8D /* StepsViewController.swift */,
+				3B3382221FBB655200B3536C /* videoPlayer.swift */,
 				04890F661FB9ED1A00606602 /* DataCellPassosTableViewCell.swift */,
 				87C070801FB5D96E002E69AF /* DetailsViewController.swift */,
 				877BD8901FB485AD00C0A709 /* DataCell.swift */,
@@ -163,6 +166,7 @@
 				04890F671FB9ED1A00606602 /* DataCellPassosTableViewCell.swift in Sources */,
 				87168A9F1FB478FB00B60D57 /* DummyCook.xcdatamodeld in Sources */,
 				876E87421FB9B8FA00E0BE8D /* StepsViewController.swift in Sources */,
+				3B3382231FBB655200B3536C /* videoPlayer.swift in Sources */,
 				87C070811FB5D96E002E69AF /* DetailsViewController.swift in Sources */,
 				877BD8911FB485AD00C0A709 /* DataCell.swift in Sources */,
 				87168A971FB478FB00B60D57 /* AppDelegate.swift in Sources */,
