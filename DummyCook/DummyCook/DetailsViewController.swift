@@ -24,6 +24,9 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         
         //textoIngredientes.text = data.textoIngredientes
+
+        print(data.textoIngredientes)
+        
         imagemReceita.image = UIImage(named: data.imagemReceita!)
         imagemReceita.layer.cornerRadius = 10
         imagemReceita.layer.masksToBounds = true
