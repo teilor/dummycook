@@ -25,8 +25,6 @@ class StepsListViewController: UIViewController, UITableViewDelegate, UITableVie
         tableViewPassos.reloadData()
     }
     
-    var listaDePassos: [CDPasso]!
-    var passoCelula: CDPasso!
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
