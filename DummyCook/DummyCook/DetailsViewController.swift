@@ -17,14 +17,23 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var textRequirements: UILabel!
     @IBOutlet var textoIngredientes: UILabel!
    
+    @IBOutlet weak var startButton: UIButton!
     
+    @IBOutlet weak var stepsButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         textoIngredientes.text = data.textoIngredientes
         imagemReceita.image = UIImage(named: data.imagemReceita!)
+        imagemReceita.layer.cornerRadius = 10
+        imagemReceita.layer.masksToBounds = true
         recipeTitle.text = data.nome
         textRequirements.text = data.textoRequirements
+        startButton.layer.cornerRadius = 10
+        startButton.layer.masksToBounds = true
+        stepsButton.layer.cornerRadius = 10
+        stepsButton.layer.masksToBounds = true
+    
         ///recipeTitle.text =
     }
     
