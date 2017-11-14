@@ -16,18 +16,18 @@ class StepsListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tituloReceita.text = "AAA"
         
-        print(listaDePassos)
-        print(listaDePassos[1].texto!)
-        print(listaDePassos[1].imagemPasso!)
+        self.tableViewPassos.dataSource = self
+        self.tableViewPassos.delegate = self
+        
+        tituloReceita.text = recipeTitle
 
     
         tableViewPassos.reloadData()
     }
     
     var listaDePassos: [CDPasso]!
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,10 +44,19 @@ class StepsListViewController: UIViewController, UITableViewDelegate, UITableVie
        cell.passoCelula = listaDePassos[indexPath.row]
         return cell
     }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        myIndex = indexPath.row
-//        performSegue(withIdentifier: "segue", sender: self)
-//    }
-//
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        myIndex = indexPath.row
+        performSegue(withIdentifier: "segueIniciaReceita", sender: self)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if( segue.identifier == "segueIniciaReceita" ) {
+            let dest = segue.destination as! StepsViewController
+            dest.listaDePassos2 = listaDePassos
+            dest.index = myIndex
+        }
+        
+    }
+    
 }

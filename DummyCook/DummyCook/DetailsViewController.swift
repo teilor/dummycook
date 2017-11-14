@@ -9,13 +9,14 @@
 import UIKit
 import CoreData
 
+
 class DetailsViewController: UIViewController {
     
     @IBOutlet var recipeTitle: UILabel!
     @IBOutlet var imagemReceita: UIImageView!
     @IBOutlet weak var textRequirements: UILabel!
     @IBOutlet var textoIngredientes: UILabel!
-    @IBOutlet weak var tituloReceita: UILabel!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,7 @@ class DetailsViewController: UIViewController {
         textoIngredientes.text = data.textoIngredientes
         imagemReceita.image = UIImage(named: data.imagemReceita!)
         recipeTitle.text = data.nome
+        textRequirements.text = data.textoRequirements
         ///recipeTitle.text =
     }
     
@@ -45,8 +47,10 @@ class DetailsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if( segue.identifier == "segueToSteps" ) {
-            //let dest = segue.destination as! StepsViewController
-           // dest.data = receitasArray[myIndex]
+            let destinoIniciaReceita = segue.destination as! StepsViewController
+            let passos = data.relationship!.allObjects as! [CDPasso]
+            destinoIniciaReceita.listaDePassos2 = passos
+            destinoIniciaReceita.index = 0
         }
         if(segue.identifier == "segueToStepsList"){
             let dest = segue.destination as! StepsListViewController

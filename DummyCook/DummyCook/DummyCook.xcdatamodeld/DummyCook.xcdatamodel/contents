@@ -3,16 +3,21 @@
     <entity name="CDPasso" representedClassName="CDPasso" syncable="YES" codeGenerationType="class">
         <attribute name="imagemPasso" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="texto" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tituloDoPasso" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="video" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="CDReceita" representedClassName="CDReceita" syncable="YES" codeGenerationType="class">
+        <attribute name="cost" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imagemReceita" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="serves" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="textoIngredientes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="textoRequirements" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDPasso" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CDReceita" positionX="-315" positionY="-36" width="128" height="103"/>
-        <element name="CDPasso" positionX="-54" positionY="0" width="128" height="88"/>
+        <element name="CDPasso" positionX="-54" positionY="0" width="128" height="103"/>
+        <element name="CDReceita" positionX="-315" positionY="-36" width="128" height="163"/>
     </elements>
 </model>

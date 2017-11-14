@@ -43,14 +43,14 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="114.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12 un" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhU-bF-Jke">
-                                                            <rect key="frame" x="133" y="56" width="41" height="21"/>
+                                                            <rect key="frame" x="133" y="56" width="192" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NnR-DW-EGj">
-                                                            <rect key="frame" x="133" y="35" width="82" height="21"/>
+                                                            <rect key="frame" x="133" y="35" width="175" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -216,7 +216,6 @@
                         <outlet property="recipeTitle" destination="d6h-bt-kOw" id="fbu-3W-bSO"/>
                         <outlet property="textRequirements" destination="Tyt-iI-y0Z" id="7hH-do-usu"/>
                         <outlet property="textoIngredientes" destination="YB4-HO-euM" id="zbE-cW-HNj"/>
-                        <outlet property="tituloReceita" destination="d6h-bt-kOw" id="f0q-yl-SrB"/>
                         <segue destination="IZS-ug-tX9" kind="show" identifier="segueToSteps" id="mEV-Ws-dZj"/>
                         <segue destination="ywo-4A-RRT" kind="show" identifier="segueToStepsList" id="2Lp-34-zfB"/>
                     </connections>
@@ -255,14 +254,14 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Titulo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dqk-97-6gP">
-                                                    <rect key="frame" x="115" y="11" width="43" height="21"/>
+                                                    <rect key="frame" x="115" y="11" width="200" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Descricao" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoG-wU-rzu">
-                                                    <rect key="frame" x="115" y="32" width="228" height="39"/>
+                                                    <rect key="frame" x="115" y="32" width="240" height="45"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -294,6 +293,7 @@
                     <connections>
                         <outlet property="tableViewPassos" destination="GZ4-xI-Rb4" id="cON-O2-4dy"/>
                         <outlet property="tituloReceita" destination="HBY-Li-0fU" id="O3A-1G-tan"/>
+                        <segue destination="IZS-ug-tX9" kind="show" identifier="segueIniciaReceita" id="gfO-Ws-fBF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y0z-Wd-jzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -315,12 +315,54 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20q-I2-cHo">
+                                <rect key="frame" x="31" y="134" width="308" height="107"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="1pe-3t-RcI">
+                                <rect key="frame" x="31" y="75" width="308" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cw7-Sa-3p7">
+                                <rect key="frame" x="48" y="617" width="59" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Previous"/>
+                                <connections>
+                                    <action selector="botaoVolta:" destination="IZS-ug-tX9" eventType="touchUpInside" id="0Qp-0J-idU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZi-hj-fZq">
+                                <rect key="frame" x="300" y="617" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="botaoProximo:" destination="IZS-ug-tX9" eventType="touchUpInside" id="LBN-DJ-hhg"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0h1-TE-knh">
+                                <rect key="frame" x="31" y="258" width="308" height="168"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fTq-Mq-4ms">
+                                        <rect key="frame" x="-6" y="-5" width="316" height="178"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="4HR-18-Zok"/>
                     </view>
                     <connections>
+                        <outlet property="descricaoPasso" destination="20q-I2-cHo" id="aN6-Nl-Bp1"/>
+                        <outlet property="progressBar" destination="1pe-3t-RcI" id="HfP-An-jfk"/>
+                        <outlet property="stepsImage" destination="fTq-Mq-4ms" id="9C1-74-LEF"/>
                         <outlet property="stepsTitle" destination="lIq-HA-7bg" id="8po-wI-Rh8"/>
+                        <outlet property="stepsViewVideo" destination="0h1-TE-knh" id="kwf-i4-aZw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="koo-eG-IL8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -349,4 +391,7 @@
     <resources>
         <image name="dummycooklogo" width="842" height="467"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="gfO-Ws-fBF"/>
+    </inferredMetricsTieBreakers>
 </document>

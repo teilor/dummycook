@@ -23,7 +23,7 @@ class DataCell: UITableViewCell {
             tableViewCell.layer.cornerRadius = 20
             
             
-            print(data)
+            recipeTitle = data.nome!
             
             
             //let passos = data.relationship!.allObjects as! [CDPasso]
@@ -31,9 +31,9 @@ class DataCell: UITableViewCell {
             
             
             title.text = data.nome
-            //time.text = data.time
-            serves.text = data.textoIngredientes
-            //cost.text = data.cost
+            time.text = data.time
+            serves.text = data.serves
+            cost.text = data.cost
             //recipeImage.image = data.recipeImage
         }
     }

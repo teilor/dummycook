@@ -17,8 +17,9 @@ class DataCellPassosTableViewCell: UITableViewCell {
     
     var passoCelula: CDPasso! {
         didSet {
-            tituloPasso.text = passoCelula.texto
+            tituloPasso.text = passoCelula.tituloDoPasso
             imagemPasso.image = UIImage(named: passoCelula.imagemPasso!)
+            descricaoPasso.text = passoCelula.texto
         }
     }
     
