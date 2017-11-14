@@ -15,7 +15,6 @@ var recipeTitle: String = ""
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
-    
     @IBOutlet weak var tableView: UITableView!
     
     var receita: CDReceita!
