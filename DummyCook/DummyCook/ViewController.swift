@@ -92,15 +92,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             passosReceita += [DescricaoPasso.init(text:"Enjoy your brazilian flan!", imagemPasso: "step10", video: "", timer: "", indice: 10, titulo: "Enjoy your flan! 😊")]
             
             //For pra cadastrar os elementos do Array em cada atributo correto do passo
-            for indice in 0...passosReceita.count-1 {
+            for indiceFor in 0...passosReceita.count-1 {
             
                 let passo = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
 
-                passo.texto = passosReceita[indice].text
-                passo.imagemPasso = passosReceita[indice].imagemPasso
-                passo.video = passosReceita[indice].video
-                passo.timer = passosReceita[indice].timer
-                passo.tituloDoPasso = passosReceita[indice].titulo
+                passo.texto = passosReceita[indiceFor].text
+                passo.imagemPasso = passosReceita[indiceFor].imagemPasso
+                passo.video = passosReceita[indiceFor].video
+                passo.timer = passosReceita[indiceFor].timer
+                passo.tituloDoPasso = passosReceita[indiceFor].titulo
+                passo.indice = passosReceita[indiceFor].indice
                 
                 receita1.addToRelationship(passo)
             }
@@ -122,15 +123,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             
             //For pra cadastrar os elementos do Array em cada atributo correto do passo
-            for indice in 0...passosReceita.count-1 {
+            for indiceFor in 0...passosReceita.count-1 {
                 
                 let passo = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
                 
-                passo.texto = passosReceita[indice].text
-                passo.imagemPasso = passosReceita[indice].imagemPasso
-                passo.video = passosReceita[indice].video
-                passo.timer = passosReceita[indice].timer
-                passo.tituloDoPasso = passosReceita[indice].titulo
+                passo.texto = passosReceita[indiceFor].text
+                passo.imagemPasso = passosReceita[indiceFor].imagemPasso
+                passo.video = passosReceita[indiceFor].video
+                passo.timer = passosReceita[indiceFor].timer
+                passo.tituloDoPasso = passosReceita[indiceFor].titulo
+                passo.indice = passosReceita[indiceFor].indice
                 
                 receita2.addToRelationship(passo)
             }
@@ -150,15 +152,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             passosReceita += [DescricaoPasso.init(text: "In a large bowl, combine cream cheese, sugar and vanilla and beat until smooth", imagemPasso: "mixing", video: "", timer: "", indice: 2, titulo: "Turn on your oven")] //Passo 2
             passosReceita += [DescricaoPasso.init(text: "Blend in eggs, one at a time", imagemPasso: "blendeggs", video: "", timer: "", indice: 3, titulo: "Turn on your oven")] //Passo 3
             
-            for indice in 0...passosReceita.count-1 {
+            for indiceFor in 0...passosReceita.count-1 {
                 
                 let passo = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
                 
-                passo.texto = passosReceita[indice].text
-                passo.imagemPasso = passosReceita[indice].imagemPasso
-                passo.video = passosReceita[indice].video
-                passo.timer = passosReceita[indice].timer
-                passo.tituloDoPasso = passosReceita[indice].titulo
+                passo.texto = passosReceita[indiceFor].text
+                passo.imagemPasso = passosReceita[indiceFor].imagemPasso
+                passo.video = passosReceita[indiceFor].video
+                passo.timer = passosReceita[indiceFor].timer
+                passo.tituloDoPasso = passosReceita[indiceFor].titulo
+                passo.indice = passosReceita[indiceFor].indice
 
                 receita3.addToRelationship(passo)
             }
@@ -186,9 +189,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! DataCell
-        cell.data = receitasArray[indexPath.row]
-        return cell
+        let cellReceita = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! DataCell
+        cellReceita.data = receitasArray[indexPath.row]
+        return cellReceita
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -201,8 +204,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // Quando for mudar de view vai mandar a receita selecionada para proxima view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if( segue.identifier == "segue" ) {
-            let dest = segue.destination as! DetailsViewController
-            dest.data = receitasArray[myIndex]
+            let telaDetalhes = segue.destination as! DetailsViewController
+            telaDetalhes.data = receitasArray[myIndex]
         }
         
     }

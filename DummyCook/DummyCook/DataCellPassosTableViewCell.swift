@@ -22,20 +22,11 @@ class DataCellPassosTableViewCell: UITableViewCell {
     var passoCelula: CDPasso! {
         didSet {
             tituloPasso.text = passoCelula.tituloDoPasso
-            //imagemPasso.image = UIImage(named: passoCelula.imagemPasso!)
             descricaoPasso.text = passoCelula.texto
-            
-            //let ind = String(listaDePassos.index(after: 0))
-            for index in 1...3 {
-                stepNumberLabel.text = String(index)
-            }
-            
-            
-            
-            
+            stepNumberLabel.text = String(passoCelula.indice)
+            //listaDePassos.sorted(by: passoCelula.indice)
         }
     }
-    
     
     
     override func awakeFromNib() {

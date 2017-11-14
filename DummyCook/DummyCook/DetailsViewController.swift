@@ -60,13 +60,17 @@ class DetailsViewController: UIViewController {
         if( segue.identifier == "segueToSteps" ) {
             let destinoIniciaReceita = segue.destination as! StepsViewController
             let passos = data.relationship!.allObjects as! [CDPasso]
-            destinoIniciaReceita.listaDePassos2 = passos
+            destinoIniciaReceita.listaDePassos2 = passos.sorted(by: { (passoA, passoB) -> Bool in
+                return passoA.indice < passoB.indice
+            })
             destinoIniciaReceita.index = 0
         }
         if(segue.identifier == "segueToStepsList"){
             let dest = segue.destination as! StepsListViewController
             let passos = data.relationship!.allObjects as! [CDPasso]
-            dest.listaDePassos = passos
+            dest.listaDePassos = passos.sorted(by: { (passoA, passoB) -> Bool in
+                return passoA.indice < passoB.indice
+            })
         }
         
     }

@@ -29,19 +29,19 @@ class StepsListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     var listaDePassos: [CDPasso]!
+    var passoCelula: CDPasso!
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listaDePassos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
        let cell = tableView.dequeueReusableCell(withIdentifier: "cellPasso", for: indexPath) as! DataCellPassosTableViewCell
        cell.passoCelula = listaDePassos[indexPath.row]
         return cell
