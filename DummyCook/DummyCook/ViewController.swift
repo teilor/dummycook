@@ -35,88 +35,166 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // 2. pegou o container (container seria o banco de dados)
         let container = appDelegate.persistentContainer
         
-        // 5. Operacao de feth
-        let request =  NSFetchRequest<NSFetchRequestResult>(entityName: "CDReceita")
-        let request2 =  NSFetchRequest<NSFetchRequestResult>(entityName: "CDPasso")
+        // 5. Operacao de fetch
+        let requestReceita =  NSFetchRequest<NSFetchRequestResult>(entityName: "CDReceita")
+        let requestPassos =  NSFetchRequest<NSFetchRequestResult>(entityName: "CDPasso")
         
-        let results = try! container.viewContext.fetch(request) as! [CDReceita]
-        let results2 = try! container.viewContext.fetch(request2) as! [CDPasso]
+        let resultsReceita = try! container.viewContext.fetch(requestReceita) as! [CDReceita]
+        let resultsPassos = try! container.viewContext.fetch(requestPassos) as! [CDPasso]
         
-        // o objeto piloto recebe o primeiro dado do result
-        self.receita = results.first
+        // O objeto receita recebe a primeira receita salva
+        self.receita = resultsReceita.first
         
-        // Se nao tiver nada cria os dados
+        // Se nao tiver nada, cria os dados
         if(self.receita == nil){
-            print("Criei as receitas")
 
-            
-            
             let receita1 = NSEntityDescription.insertNewObject(forEntityName: "CDReceita", into: container.viewContext) as! CDReceita
             let receita2 = NSEntityDescription.insertNewObject(forEntityName: "CDReceita", into: container.viewContext) as! CDReceita
+            let receita3 = NSEntityDescription.insertNewObject(forEntityName: "CDReceita", into: container.viewContext) as! CDReceita
             
-            let passo1_1 = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
-            let passo1_2 = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
+            receita1.nome = "Brazilian Flan"
+            receita1.textoIngredientes = ["1 cup sugar", "2 cans sweetened condensed milk", "1 can whole milk", "3 eggs"] as NSArray
+            receita1.time = "6h"
+            receita1.serves = "8"
+            receita1.textoRequirements = "Oven, Pan, Cake Tin and Stoven"
+            receita1.imagemReceita = "brflan"
+            receita1.cost = "R$16,00"
             
-            let passo2_1 = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
-            let passo2_2 = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
+            var passosReceita: [String] = []
+            var contArray = 0
+
+            //Estrutura do array: [0]Texto do passo, [1]Se tem imagem,[2]Se tem video,[3]Se tem timer
+            passosReceita += ["Melt the sugar in a pan over low heat, stiring constantly, until the sugar becomes a golden brown syrup.", "","step1.mov",""] //Passo 1 com video
+            passosReceita += ["Once the sugar becomes a golden brown syrup, it`s ready. Switch the stove off.", "step2","",""] //Passo 2 com foto
+            passosReceita += ["Place all other ingredients into a blender, blend it for 5 minutes.", "", "step3.mov", ""] //Passo 3 com video
+            passosReceita += ["Pour mixture into the pan. The pan is now with the sugar caramelized", "step4", "", ""] //Passo 4 com foto
+            passosReceita += ["Place water into a cake tin. Then, place the pan with the mixture and the caramelized sugar inside", "step5", "", ""] //Passo 5 com foto
+            passosReceita += ["Turn on the oven at 200 degrees and put the  cake tin inside. Let it cook for 2 hours.", "step6","",""] //Passo 6 com foto
+            passosReceita += ["Carefully remove your pan from the oven, watch out as the water will be very hot", "step7", "", ""] //Passo 7
+            passosReceita += ["The flan must cool for a few hours, better if you let it rest on the refrigerator overnight", "", "", ""] //Passo 8
+            passosReceita += ["To take if off the pan, heat the pan over low heat for 20 seconds, then invert into a serving plate. Pick a proper plate as it needs to be large enough for the flan and some of the caramel", "step9", "", ""] //Passo 9
+            passosReceita += ["Enjoy your brazilian flan!", "step10", "", ""]
             
+            //For pra cadastrar os elementos do Array em cada atributo correto do passo
+            for indice in 0...passosReceita.count-1 {
+                
+                let passo = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
+                
+                switch contArray{
+                case 0:
+                    passo.texto = passosReceita[indice]
+                case 1:
+                    passo.imagemPasso = passosReceita[indice]
+                case 2:
+                    passo.video = passosReceita[indice]
+                case 3:
+                    passo.timer = passosReceita[indice]
+                default:
+                    print("Placeholder")
+                }
+                
+                contArray += 1
+                
+                if(contArray == 4){
+                    contArray = 0
+                    receita1.addToRelationship(passo)
+                }
+            }
             
-            receita1.nome = "Double Layer Pumpkin Cheesecake"
-            receita1.textoIngredientes = "blablalbablablabla"
-            receita1.imagemReceita = "1"
-            receita1.textoRequirements = "aksodkaosdkaosdkaokdssaokd"
-            receita1.cost = "R$ 12,00"
-            receita1.serves = "12 un"
-            receita1.time = "30 min"
+            passosReceita = [""]
             
-            
-            passo1_1.imagemPasso = "2"
-            passo1_1.video = ""
-            passo1_1.texto = "asldalsjdlasjdlasdllasdkjaslkdjalsdjlaksjdlajsldjasldjlasjdlajsldjasldka"
-            passo1_1.tituloDoPasso = "Misture os ingredientes"
-            
-            passo1_2.imagemPasso = "1"
-            passo1_2.video = ""
-            passo1_2.texto = "asdjaoisjdoiasjodjaosidjoiasjdoiajsoidjaosidjaosijdoaisjdoaijsdaijsod"
-            passo1_2.tituloDoPasso = "Aqueça até descolar da panela"
-            
-            receita1.addToRelationship(passo1_1)
-            receita1.addToRelationship(passo1_2)
-            
-            
-            receita2.nome = "Pumpkin Ginger Cupcakes"
-            receita2.textoIngredientes = "blablalbablablabla"
-            receita2.imagemReceita = "2"
-            receita1.textoRequirements = "aksodkaosdkaosdkaokdssaokd"
+            receita2.nome = "Double Layer Pumpkin Cheesecake"
+            receita2.textoIngredientes = ["2 (8 ounce) packages cream cheese, softened", "1/2 cup white sugar", "1/2 teaspoon vanilla extract", "2 eggs", "1 (9 inch) prepared graham cracker crust", "1/2 pumpkin puree", "1/2 teaspoon ground cinnamon", "1 pinch ground cloves","1 pinch ground nutmeg", "1/2 cup frozen whipped topping thawed"] as NSArray
+            receita2.time = "4h10"
+            receita2.serves = "8"
+            receita2.textoRequirements = "1 beater"
+            receita2.imagemReceita = "1"
             receita2.cost = "R$ 24,00"
-            receita2.serves = "2 pratos"
-            receita2.time = "1h 20min"
             
-            passo2_1.imagemPasso = "2"
-            passo2_1.video = ""
-            passo2_1.texto = "jasojadoijsdoiajsodijaosdjoajdoasjid"
-            passo2_1.tituloDoPasso = "Misture os ingredientes"
+            //Estrutura do array: [0]Texto do passo, [1]Se tem imagem,[2]Se tem video,[3]Se tem timer
+            passosReceita += ["Turn on your oven to 325 degrees F (165 degrees C) and let it preheat", "preheat","",""] //Passo 1
+            passosReceita += ["In a large bowl, combine cream cheese, sugar and vanilla and beat until smooth","mixing","",""] //Passo 2
+            passosReceita += ["Blend in eggs, one at a time", "blendeggs", "", ""] //Passo 3
             
-            passo2_2.imagemPasso = "1"
-            passo2_2.video = ""
-            passo2_2.texto = "mio3oij3eioj3oiej3oej3oejo3iej3o"
-            passo2_2.tituloDoPasso = "Aqueça até descolar da panela"
             
-            receita2.addToRelationship(passo2_1)
-            receita2.addToRelationship(passo2_2)
+            //For pra cadastrar os elementos do Array em cada atributo correto do passo
+            for indice in 0...passosReceita.count-1 {
+                
+                let passo = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
+                
+                    switch contArray{
+                    case 0:
+                        passo.texto = passosReceita[indice]
+                    case 1:
+                        passo.imagemPasso = passosReceita[indice]
+                    case 2:
+                        passo.video = passosReceita[indice]
+                    case 3:
+                        passo.timer = passosReceita[indice]
+                    default:
+                        print("Placeholder")
+                    }
+                
+                contArray += 1
+                
+                if(contArray == 4){
+                    contArray = 0
+                    receita2.addToRelationship(passo)
+                }
+            }
+            passosReceita = [""]
+
+            receita3.nome = "Pumpkin Ginger Cupcakes"
+            receita3.textoIngredientes = [""] as NSArray
+            receita3.time = "1h 20min"
+            receita3.serves = "2 pratos"
+            receita3.textoRequirements = "1 beater"
+            receita3.imagemReceita = "2"
+            receita3.cost = "R$ 24,00"
+         
+            //Estrutura do array: [0]Texto do passo, [1]Se tem imagem,[2]Se tem video,[3]Se tem timer
+            passosReceita += ["Turn on your oven to 325 degrees F (165 degrees C) and let it preheat", "preheat","",""] //Passo 1
+            passosReceita += ["In a large bowl, combine cream cheese, sugar and vanilla and beat until smooth","mixing","",""] //Passo 2
+            passosReceita += ["Blend in eggs, one at a time", "blendeggs", "", ""] //Passo 3
+            
+            for indice in 0...passosReceita.count-1 {
+                
+                let passo = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
+                
+                switch contArray{
+                case 0:
+                    passo.texto = passosReceita[indice]
+                case 1:
+                    passo.imagemPasso = passosReceita[indice]
+                case 2:
+                    passo.video = passosReceita[indice]
+                case 3:
+                    passo.timer = passosReceita[indice]
+                default:
+                    print("Placeholder")
+                }
+                
+                contArray += 1
+                
+                if(contArray == 4){
+                    contArray = 0
+                    receita3.addToRelationship(passo)
+                }
+            }
             
             receitasArray.append(receita1)
             receitasArray.append(receita2)
-       
+            receitasArray.append(receita3)
+            
+            print("Receitas criadas")
             
         }else{
-            self.receitasArray = results
-            self.passosArray = results2
-            print("Carreguei as receitas")
+            self.receitasArray = resultsReceita
+            self.passosArray = resultsPassos
+            print("Receitas retornadas")
         }
         
         try! container.viewContext.save()
-        
         
         tableView.reloadData()
         
