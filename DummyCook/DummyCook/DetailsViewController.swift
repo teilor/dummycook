@@ -15,17 +15,16 @@ class DetailsViewController: UIViewController {
     @IBOutlet var recipeTitle: UILabel!
     @IBOutlet var imagemReceita: UIImageView!
     @IBOutlet weak var textRequirements: UILabel!
-    @IBOutlet var textoIngredientes: UILabel!
-   
     @IBOutlet weak var startButton: UIButton!
     
+    @IBOutlet weak var textIngredientes: UITextView!
     @IBOutlet weak var stepsButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //textoIngredientes.text = data.textoIngredientes
+        //textoIngredientes.text = (data.textoIngredientes?.description ?? 0)
 
-        print(data.textoIngredientes)
+        textIngredientes.text = (data.textoIngredientes as! [String]).joined(separator: "\n")
         
         imagemReceita.image = UIImage(named: data.imagemReceita!)
         imagemReceita.layer.cornerRadius = 10
