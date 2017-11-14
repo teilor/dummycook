@@ -27,7 +27,7 @@ class DetailsViewController: UIViewController {
 
         //print(data.textoIngredientes)
         print("AQUI AQUI AQUI")
-        print((data.textoIngredientes?.description ?? 0))
+        print((data.textoIngredientes?.description. ?? 0))
         //textoIngredientes.text = data.textoIngredientes?.description
         
         imagemReceita.image = UIImage(named: data.imagemReceita!)
