@@ -11,15 +11,28 @@ import UIKit
 class DataCellPassosTableViewCell: UITableViewCell {
 
     
-    @IBOutlet weak var imagemPasso: UIImageView!
+   // @IBOutlet weak var imagemPasso: UIImageView!
     @IBOutlet weak var tituloPasso: UILabel!
     @IBOutlet weak var descricaoPasso: UILabel!
+    
+    @IBOutlet weak var stepNumberLabel: UILabel!
+    
+    var listaDePassos: [CDPasso]!
     
     var passoCelula: CDPasso! {
         didSet {
             tituloPasso.text = passoCelula.tituloDoPasso
-            imagemPasso.image = UIImage(named: passoCelula.imagemPasso!)
+            //imagemPasso.image = UIImage(named: passoCelula.imagemPasso!)
             descricaoPasso.text = passoCelula.texto
+            
+            //let ind = String(listaDePassos.index(after: 0))
+            for index in 1...3 {
+                stepNumberLabel.text = String(index)
+            }
+            
+            
+            
+            
         }
     }
     

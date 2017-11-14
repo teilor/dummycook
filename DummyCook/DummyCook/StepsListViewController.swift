@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class StepsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableViewPassos: UITableView!
 
     @IBOutlet weak var tituloReceita: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
