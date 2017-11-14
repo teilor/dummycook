@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CDPasso" representedClassName="CDPasso" syncable="YES" codeGenerationType="class">
         <attribute name="imagemPasso" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="indice" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="texto" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tituloDoPasso" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,7 +19,7 @@
         <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDPasso" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CDPasso" positionX="-54" positionY="0" width="128" height="120"/>
+        <element name="CDPasso" positionX="-54" positionY="0" width="128" height="133"/>
         <element name="CDReceita" positionX="-315" positionY="-36" width="128" height="165"/>
     </elements>
 </model>

@@ -59,48 +59,54 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             receita1.imagemReceita = "brflan"
             receita1.cost = "R$16,00"
             
-            var passosReceita: [String] = []
-            var contArray = 0
+            struct DescricaoPasso {
+                var text: String
+                var titulo : String
+                var imagemPasso: String
+                var video: String
+                var timer: String
+                var indice: Int16
+                
+                init(text: String, imagemPasso: String, video: String, timer: String, indice: Int16, titulo: String) {
+                    self.text = text
+                    self.imagemPasso = imagemPasso
+                    self.video = video
+                    self.timer = timer
+                    self.titulo = timer
+                    self.indice = indice
+                    self.titulo = titulo
+                }
+                
+            }
             
-            //Estrutura do array: [0]Texto do passo, [1]Se tem imagem,[2]Se tem video,[3]Se tem timer
-            passosReceita += ["Melt the sugar in a pan over low heat, stiring constantly, until the sugar becomes a golden brown syrup.", "","step1.mov",""] //Passo 1 com video
-            passosReceita += ["Once the sugar becomes a golden brown syrup, it`s ready. Switch the stove off.", "step2","",""] //Passo 2 com foto
-            passosReceita += ["Place all other ingredients into a blender, blend it for 5 minutes.", "", "step3.mov", ""] //Passo 3 com video
-            passosReceita += ["Pour mixture into the pan. The pan is now with the sugar caramelized", "step4", "", ""] //Passo 4 com foto
-            passosReceita += ["Place water into a cake tin. Then, place the pan with the mixture and the caramelized sugar inside", "step5", "", ""] //Passo 5 com foto
-            passosReceita += ["Turn on the oven at 200 degrees and put the  cake tin inside. Let it cook for 2 hours.", "step6","",""] //Passo 6 com foto
-            passosReceita += ["Carefully remove your pan from the oven, watch out as the water will be very hot", "step7", "", ""] //Passo 7
-            passosReceita += ["The flan must cool for a few hours, better if you let it rest on the refrigerator overnight", "", "", ""] //Passo 8
-            passosReceita += ["To take if off the pan, heat the pan over low heat for 20 seconds, then invert into a serving plate. Pick a proper plate as it needs to be large enough for the flan and some of the caramel", "step9", "", ""] //Passo 9
-            passosReceita += ["Enjoy your brazilian flan!", "step10", "", ""]
+            var passosReceita: [DescricaoPasso] = []
+
+            passosReceita += [DescricaoPasso.init(text:"Melt the sugar in a pan over low heat, stiring constantly, until the sugar becomes a golden brown syrup.", imagemPasso: "", video: "step1.mov",timer: "", indice: 1, titulo: "Melt the sugar")] //Passo 1 com video
+            passosReceita += [DescricaoPasso.init(text: "Once the sugar becomes a golden brown syrup, it`s ready. Switch the stove off.", imagemPasso: "step2",video: "", timer: "", indice: 2, titulo: "Turning off the stove")] //Passo 2 com foto
+            passosReceita += [DescricaoPasso.init(text:"Place all other ingredients into a blender, blend it for 5 minutes.", imagemPasso: "", video: "step3.mov", timer: "", indice: 3, titulo: "Blend the ingredients")] //Passo 3 com video
+            passosReceita += [DescricaoPasso.init(text:"Pour mixture into the pan. The pan is now with the sugar caramelized", imagemPasso: "step4", video: "", timer: "", indice: 4, titulo: "Pour the mixture into the pan")] //Passo 4 com foto
+            passosReceita += [DescricaoPasso.init(text:"Place water into a cake tin. Then, place the pan with the mixture and the caramelized sugar inside", imagemPasso: "step5", video: "", timer: "", indice: 5, titulo: "Place water into a cake tin")] //Passo 5 com foto
+            passosReceita += [DescricaoPasso.init(text:"Turn on the oven at 200 degrees and put the  cake tin inside. Let it cook for 2 hours.", imagemPasso: "step6",video: "",timer: "", indice: 6, titulo: "Put the cake tin into the oven")] //Passo 6 com foto
+            passosReceita += [DescricaoPasso.init(text:"Carefully remove your pan from the oven, watch out as the water will be very hot", imagemPasso: "step7", video: "", timer: "", indice: 7, titulo: "Remove from the oven")] //Passo 7
+            passosReceita += [DescricaoPasso.init(text:"The flan must cool for a few hours, better if you let it rest on the refrigerator overnight", imagemPasso: "", video: "", timer: "", indice: 8, titulo: "Let it cool")] //Passo 8
+            passosReceita += [DescricaoPasso.init(text:"To take if off the pan, heat the pan over low heat for 20 seconds, then invert into a serving plate. Pick a proper plate as it needs to be large enough for the flan and some of the caramel", imagemPasso: "step9", video: "", timer: "", indice: 9, titulo: "Transfer to a plate")] //Passo 9
+            passosReceita += [DescricaoPasso.init(text:"Enjoy your brazilian flan!", imagemPasso: "step10", video: "", timer: "", indice: 10, titulo: "Enjoy your flan! 😊")]
             
             //For pra cadastrar os elementos do Array em cada atributo correto do passo
             for indice in 0...passosReceita.count-1 {
-                
+            
                 let passo = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
+
+                passo.texto = passosReceita[indice].text
+                passo.imagemPasso = passosReceita[indice].imagemPasso
+                passo.video = passosReceita[indice].video
+                passo.timer = passosReceita[indice].timer
                 
-                switch contArray{
-                case 0:
-                    passo.texto = passosReceita[indice]
-                case 1:
-                    passo.imagemPasso = passosReceita[indice]
-                case 2:
-                    passo.video = passosReceita[indice]
-                case 3:
-                    passo.timer = passosReceita[indice]
-                default:
-                    print("Placeholder")
-                }
+                receita1.addToRelationship(passo)
                 
-                contArray += 1
-                
-                if(contArray == 4){
-                    contArray = 0
-                    receita1.addToRelationship(passo)
-                }
             }
             
-            passosReceita = [""]
+            passosReceita = []
             
             receita2.nome = "Double Layer Pumpkin Cheesecake"
             receita2.textoIngredientes = ["2 (8 ounce) packages cream cheese, softened", "1/2 cup white sugar", "1/2 teaspoon vanilla extract", "2 eggs", "1 (9 inch) prepared graham cracker crust", "1/2 pumpkin puree", "1/2 teaspoon ground cinnamon", "1 pinch ground cloves","1 pinch ground nutmeg", "1/2 cup frozen whipped topping thawed"] as NSArray
@@ -111,9 +117,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             receita2.cost = "R$ 24,00"
             
             //Estrutura do array: [0]Texto do passo, [1]Se tem imagem,[2]Se tem video,[3]Se tem timer
-            passosReceita += ["Turn on your oven to 325 degrees F (165 degrees C) and let it preheat", "preheat","",""] //Passo 1
-            passosReceita += ["In a large bowl, combine cream cheese, sugar and vanilla and beat until smooth","mixing","",""] //Passo 2
-            passosReceita += ["Blend in eggs, one at a time", "blendeggs", "", ""] //Passo 3
+            passosReceita += [DescricaoPasso.init(text: "Turn on your oven to 325 degrees F (165 degrees C) and let it preheat", imagemPasso: "preheat",video: "", timer: "", indice: 1, titulo: "Turn on your oven")] //Passo 1
+            passosReceita += [DescricaoPasso.init(text: "In a large bowl, combine cream cheese, sugar and vanilla and beat until smooth", imagemPasso: "mixing", video: "", timer: "", indice: 2, titulo: "Turn on your oven")] //Passo 2
+            passosReceita += [DescricaoPasso.init(text: "Blend in eggs, one at a time", imagemPasso: "blendeggs", video:  "", timer:  "", indice: 3, titulo: "Turn on your oven")] //Passo 3
             
             
             //For pra cadastrar os elementos do Array em cada atributo correto do passo
@@ -121,27 +127,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
                 let passo = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
                 
-                switch contArray{
-                case 0:
-                    passo.texto = passosReceita[indice]
-                case 1:
-                    passo.imagemPasso = passosReceita[indice]
-                case 2:
-                    passo.video = passosReceita[indice]
-                case 3:
-                    passo.timer = passosReceita[indice]
-                default:
-                    print("Placeholder")
-                }
-                
-                contArray += 1
-                
-                if(contArray == 4){
-                    contArray = 0
-                    receita2.addToRelationship(passo)
-                }
+                passo.texto = passosReceita[indice].text
+                passo.imagemPasso = passosReceita[indice].imagemPasso
+                passo.video = passosReceita[indice].video
+                passo.timer = passosReceita[indice].timer
             }
-            passosReceita = [""]
+            
+            passosReceita = []
             
             receita3.nome = "Pumpkin Ginger Cupcakes"
             receita3.textoIngredientes = [""] as NSArray
@@ -152,33 +144,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             receita3.cost = "R$ 24,00"
             
             //Estrutura do array: [0]Texto do passo, [1]Se tem imagem,[2]Se tem video,[3]Se tem timer
-            passosReceita += ["Turn on your oven to 325 degrees F (165 degrees C) and let it preheat", "preheat","",""] //Passo 1
-            passosReceita += ["In a large bowl, combine cream cheese, sugar and vanilla and beat until smooth","mixing","",""] //Passo 2
-            passosReceita += ["Blend in eggs, one at a time", "blendeggs", "", ""] //Passo 3
+            passosReceita += [DescricaoPasso.init(text: "Turn on your oven to 325 degrees F (165 degrees C) and let it preheat", imagemPasso: "preheat", video: "", timer: "", indice: 1, titulo: "Turn on your oven")] //Passo 1
+            passosReceita += [DescricaoPasso.init(text: "In a large bowl, combine cream cheese, sugar and vanilla and beat until smooth", imagemPasso: "mixing", video: "", timer: "", indice: 2, titulo: "Turn on your oven")] //Passo 2
+            passosReceita += [DescricaoPasso.init(text: "Blend in eggs, one at a time", imagemPasso: "blendeggs", video: "", timer: "", indice: 3, titulo: "Turn on your oven")] //Passo 3
             
             for indice in 0...passosReceita.count-1 {
                 
                 let passo = NSEntityDescription.insertNewObject(forEntityName: "CDPasso", into: container.viewContext) as! CDPasso
                 
-                switch contArray{
-                case 0:
-                    passo.texto = passosReceita[indice]
-                case 1:
-                    passo.imagemPasso = passosReceita[indice]
-                case 2:
-                    passo.video = passosReceita[indice]
-                case 3:
-                    passo.timer = passosReceita[indice]
-                default:
-                    print("Placeholder")
-                }
-                
-                contArray += 1
-                
-                if(contArray == 4){
-                    contArray = 0
-                    receita3.addToRelationship(passo)
-                }
+                passo.texto = passosReceita[indice].text
+                passo.imagemPasso = passosReceita[indice].imagemPasso
+                passo.video = passosReceita[indice].video
+                passo.timer = passosReceita[indice].timer
+
             }
             
             receitasArray.append(receita1)
@@ -197,7 +175,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         tableView.reloadData()
         
-        }
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return receitasArray.count
