@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Speech
 
 class StepsViewController: UIViewController {
     
@@ -17,6 +18,12 @@ class StepsViewController: UIViewController {
     @IBOutlet weak var descricaoPasso: UILabel!
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    
+    let audioEngine = AVAudioEngine()
+    let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer()
+    let request = SFSpeechAudioBufferRecognitionRequest()
+    var recognitionTask: SFSpeechRecognitionTask?
+    
     // timer
     var seconds = 200
     var timer = Timer()
@@ -63,6 +70,7 @@ class StepsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         stepsTitle.text = listaDePassos2[index].tituloDoPasso
         verifMidia()
@@ -72,10 +80,9 @@ class StepsViewController: UIViewController {
         }
     
     override func viewWillAppear(_ animated: Bool) {
-        stepsTitle.text = listaDePassos2[index].tituloDoPasso
-        verifMidia()
-        descricaoPasso.text = listaDePassos2[index].texto
-        progressBar.progress = setProgress()
+        uptadeUI()
+
+        startRecording()
     }
     
     
@@ -84,7 +91,8 @@ class StepsViewController: UIViewController {
         if(index != (listaDePassos2.count - 1)){
             index = index + 1
              progressBar.progress = setProgress()
-            viewWillAppear(true)
+            uptadeUI()
+            //viewWillAppear(true)
             //stepsTitle.text = listaDePassos2[index].tituloDoPasso
             //stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
             //VIDEO
@@ -99,7 +107,8 @@ class StepsViewController: UIViewController {
             //self.navigationController?.popViewController(animated: true)
             index = index - 1
             progressBar.progress = setProgress()
-            viewWillAppear(true)
+            uptadeUI()
+            //viewWillAppear(true)
             //stepsTitle.text = listaDePassos2[index].tituloDoPasso
             //stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
             //VIDEO
@@ -125,6 +134,13 @@ class StepsViewController: UIViewController {
         }
     }
     
+    func uptadeUI(){
+        stepsTitle.text = listaDePassos2[index].tituloDoPasso
+        verifMidia()
+        descricaoPasso.text = listaDePassos2[index].texto
+        progressBar.progress = setProgress()
+    }
+    
     func verifMidia(){
         stepsImage.isHidden = true
         stepsViewVideo.isHidden = true
@@ -142,6 +158,58 @@ class StepsViewController: UIViewController {
             stepsViewVideo.playerVideo(withFile: listaDePassos2[index].video!) //Chama a classe definindo o video a ser reproduzido
         }
     }
+    
+    func startRecording() {
+        
+        // Setup audio engine and speech recognizer
+        let node = audioEngine.inputNode// else { return }
+        let recordingFormat = node.outputFormat(forBus: 0)
+        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
+            self.request.append(buffer)
+        }
+        
+        // Prepare and start recording
+        
+        audioEngine.prepare()
+        do {
+            try audioEngine.start()
+        } catch {
+            return print(error)
+        }
+        
+        // Analyze the speech
+        
+        recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { result, error in
+            if let result = result {
+                
+                if(result.bestTranscription.formattedString.contains("next") ||
+                    result.bestTranscription.formattedString.contains("Next")){
+                    self.cancelRecording()
+                    self.botaoProximo(true)
+                    print("Avanca")
+                }
+                
+                if(result.bestTranscription.formattedString.contains("Back") || result.bestTranscription.formattedString.contains("back")){
+                    self.botaoVolta(true)
+                    self.cancelRecording()
+                    print("Volta")
+                }
+            } else if let error = error {
+                print(error)
+            }
+        })
+        
+    }
+    
+    /// Stops and cancels the speech recognition.
+    func cancelRecording() {
+        audioEngine.stop()
+        let node = audioEngine.inputNode //{
+        node.removeTap(onBus: 0)
+        //}
+        recognitionTask?.cancel()
+    }
+    
     
     /*
     
