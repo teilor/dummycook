@@ -68,8 +68,7 @@ class StepsViewController: UIViewController {
         stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
         //VIDEO
         descricaoPasso.text = listaDePassos2[index].texto
-        
-        
+        progressBar.progress = setProgress()
     }
     
     
@@ -78,6 +77,7 @@ class StepsViewController: UIViewController {
         stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
         //VIDEO
         descricaoPasso.text = listaDePassos2[index].texto
+        progressBar.progress = setProgress()
     }
     
     
@@ -85,10 +85,12 @@ class StepsViewController: UIViewController {
     @IBAction func botaoProximo(_ sender: Any) {
         if(index != (listaDePassos2.count - 1)){
             index = index + 1
-            stepsTitle.text = listaDePassos2[index].tituloDoPasso
-            stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
+             progressBar.progress = setProgress()
+            viewWillAppear(true)
+            //stepsTitle.text = listaDePassos2[index].tituloDoPasso
+            //stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
             //VIDEO
-            descricaoPasso.text = listaDePassos2[index].texto
+            //descricaoPasso.text = listaDePassos2[index].texto
         }
     }
     
@@ -98,11 +100,17 @@ class StepsViewController: UIViewController {
         if(index != 0){
             //self.navigationController?.popViewController(animated: true)
             index = index - 1
-            stepsTitle.text = listaDePassos2[index].tituloDoPasso
-            stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
+            progressBar.progress = setProgress()
+            viewWillAppear(true)
+            //stepsTitle.text = listaDePassos2[index].tituloDoPasso
+            //stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
             //VIDEO
-            descricaoPasso.text = listaDePassos2[index].texto
+            //descricaoPasso.text = listaDePassos2[index].texto
         }
+    }
+    
+    func setProgress() -> Float {
+        return ((Float(index + 1) * 100) / Float(listaDePassos2.count) / 100)
     }
     
     var listaDePassos2: [CDPasso]!
