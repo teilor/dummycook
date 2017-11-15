@@ -80,9 +80,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             var passosReceita: [DescricaoPasso] = []
 
-            passosReceita += [DescricaoPasso.init(text:"Melt the sugar in a pan over low heat, stiring constantly, until the sugar becomes a golden brown syrup.", imagemPasso: "", video: "step1.mov",timer: "20", indice: 1, titulo: "Melt the sugar")] //Passo 1 com video
+            passosReceita += [DescricaoPasso.init(text:"Melt the sugar in a pan over low heat, stiring constantly, until the sugar becomes a golden brown syrup.", imagemPasso: "", video: "step1.MOV",timer: "20", indice: 1, titulo: "Melt the sugar")] //Passo 1 com video
             passosReceita += [DescricaoPasso.init(text: "Once the sugar becomes a golden brown syrup, it`s ready. Switch the stove off.", imagemPasso: "step2",video: "", timer: "20", indice: 2, titulo: "Turning off the stove")] //Passo 2 com foto
-            passosReceita += [DescricaoPasso.init(text:"Place all other ingredients into a blender, blend it for 5 minutes.", imagemPasso: "", video: "step3.mov", timer: "20", indice: 3, titulo: "Blend the ingredients")] //Passo 3 com video
+            passosReceita += [DescricaoPasso.init(text:"Place all other ingredients into a blender, blend it for 5 minutes.", imagemPasso: "", video: "step3.MOV", timer: "20", indice: 3, titulo: "Blend the ingredients")] //Passo 3 com video
             passosReceita += [DescricaoPasso.init(text:"Pour mixture into the pan. The pan is now with the sugar caramelized", imagemPasso: "step4", video: "", timer: "20", indice: 4, titulo: "Pour the mixture into the pan")] //Passo 4 com foto
             passosReceita += [DescricaoPasso.init(text:"Place water into a cake tin. Then, place the pan with the mixture and the caramelized sugar inside", imagemPasso: "step5", video: "", timer: "20", indice: 5, titulo: "Place water into a cake tin")] //Passo 5 com foto
             passosReceita += [DescricaoPasso.init(text:"Turn on the oven at 200 degrees and put the  cake tin inside. Let it cook for 2 hours.", imagemPasso: "step6",video: "",timer: "20", indice: 6, titulo: "Put the cake tin into the oven")] //Passo 6 com foto

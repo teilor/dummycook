@@ -12,7 +12,7 @@ class StepsViewController: UIViewController {
     
     @IBOutlet weak var stepsTitle: UILabel!
     @IBOutlet weak var stepsImage: UIImageView!
-    @IBOutlet weak var stepsViewVideo: UIView!
+    @IBOutlet weak var stepsViewVideo: videoPlayer!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var descricaoPasso: UILabel!
     @IBOutlet weak var previousButton: UIButton!
@@ -65,17 +65,15 @@ class StepsViewController: UIViewController {
         super.viewDidLoad()
 
         stepsTitle.text = listaDePassos2[index].tituloDoPasso
-        stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
-        //VIDEO
+        verifMidia()
         descricaoPasso.text = listaDePassos2[index].texto
         progressBar.progress = setProgress()
-    }
     
+        }
     
     override func viewWillAppear(_ animated: Bool) {
         stepsTitle.text = listaDePassos2[index].tituloDoPasso
-        stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
-        //VIDEO
+        verifMidia()
         descricaoPasso.text = listaDePassos2[index].texto
         progressBar.progress = setProgress()
     }
@@ -119,6 +117,30 @@ class StepsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func verifUltimo(){
+        if(index == listaDePassos2.count - 1){
+            
+        }
+    }
+    
+    func verifMidia(){
+        stepsImage.isHidden = true
+        stepsViewVideo.isHidden = true
+     
+        if(listaDePassos2[index].video?.isEmpty)!{ //Se o video for vazio
+            stepsImage.isHidden = false
+            stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
+            
+        } else { //Se a imagem for vazia
+            stepsViewVideo.isHidden = false
+            
+            let recognizer = UITapGestureRecognizer(target: self.stepsViewVideo, action: #selector(videoPlayer.playPress)) //Cria um reconhecedor de gesto, no caso do toque singular (tap) e efetua uma ação
+            
+            stepsViewVideo.addGestureRecognizer(recognizer) //Adicionha o reconhecedor pra View que vai reproduzir o vídeo
+            stepsViewVideo.playerVideo(withFile: listaDePassos2[index].video!) //Chama a classe definindo o video a ser reproduzido
+        }
     }
     
     /*

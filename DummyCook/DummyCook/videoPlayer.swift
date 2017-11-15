@@ -20,8 +20,19 @@ class videoPlayer: UIView {
      // Drawing code
      }
      */
+    var player: AVPlayer? { //Player de video
+        didSet {
+            player?.play()
+        }
+    }
     
-    var player: AVPlayer? //Player de video
+    var playerObserver: Any?
+    
+    deinit {
+        guard let obserserver = playerObserver else { return }
+        NotificationCenter.default.removeObserver(obserserver)
+    }
+    
     var playerLayer: AVPlayerLayer? //Layer que define o visual do player
     
     @IBInspectable var file:String = "" //Nome do video a ser recebido
@@ -41,6 +52,14 @@ class videoPlayer: UIView {
         
         playerLayer?.frame = self.bounds //Define o layer pro player se limitar a View que o contém
         self.layer.addSublayer(playerLayer!)
+        
+        let resetPlayer = {
+            self.player?.seek(to: kCMTimeZero)
+            self.player?.play()
+        }
+        playerObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem, queue: nil) { notification in
+            resetPlayer()
+        }
     }
     
     @objc func playPress(){ //Função chamada ao dar um toque no video
