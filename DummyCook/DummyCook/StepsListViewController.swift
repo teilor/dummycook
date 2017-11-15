@@ -13,7 +13,7 @@ class StepsListViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet weak var tableViewPassos: UITableView!
     @IBOutlet weak var tituloReceita: UILabel!
-    var listaDePassos: [CDPasso]!
+    //var listaDePassos: [CDPasso]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
