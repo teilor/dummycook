@@ -18,12 +18,13 @@ class StepsViewController: UIViewController {
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     // timer
-    var seconds = 200
+    
     var timer = Timer()
     var isTimerRunning = false
     var resumeTapped = false
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var timerView: UIView!
+    var seconds: Int = 0
     
     // timer functions
     @IBAction func play(_ sender: Any) {
@@ -95,6 +96,7 @@ class StepsViewController: UIViewController {
             index = index + 1
              progressBar.progress = setProgress()
             viewWillAppear(true)
+
             //stepsTitle.text = listaDePassos2[index].tituloDoPasso
             //stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
             //VIDEO
@@ -141,12 +143,15 @@ class StepsViewController: UIViewController {
         stepsImage.isHidden = true
         stepsViewVideo.isHidden = true
         
+        
+        
         // Hillary Srere
         if (listaDePassos2[index].timer?.isEmpty)! {
             timerView.isHidden = true
-            print("should hide")
+            
             print("should hide")
         } else {
+            seconds = Int(listaDePassos2[index].timer!)!
             timerView.isHidden = false
             print("should show")
         }
