@@ -80,16 +80,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             var passosReceita: [DescricaoPasso] = []
 
-            passosReceita += [DescricaoPasso.init(text:"Melt the sugar in a pan over low heat, stiring constantly, until the sugar becomes a golden brown syrup.", imagemPasso: "", video: "step1.MOV",timer: "20", indice: 1, titulo: "Melt the sugar")] //Passo 1 com video
-            passosReceita += [DescricaoPasso.init(text: "Once the sugar becomes a golden brown syrup, it`s ready. Switch the stove off.", imagemPasso: "step2",video: "", timer: "20", indice: 2, titulo: "Turning off the stove")] //Passo 2 com foto
-            passosReceita += [DescricaoPasso.init(text:"Place all other ingredients into a blender, blend it for 5 minutes.", imagemPasso: "", video: "step3.MOV", timer: "20", indice: 3, titulo: "Blend the ingredients")] //Passo 3 com video
-            passosReceita += [DescricaoPasso.init(text:"Pour mixture into the pan. The pan is now with the sugar caramelized", imagemPasso: "step4", video: "", timer: "20", indice: 4, titulo: "Pour the mixture into the pan")] //Passo 4 com foto
-            passosReceita += [DescricaoPasso.init(text:"Place water into a cake tin. Then, place the pan with the mixture and the caramelized sugar inside", imagemPasso: "step5", video: "", timer: "20", indice: 5, titulo: "Place water into a cake tin")] //Passo 5 com foto
-            passosReceita += [DescricaoPasso.init(text:"Turn on the oven at 200 degrees and put the  cake tin inside. Let it cook for 2 hours.", imagemPasso: "step6",video: "",timer: "20", indice: 6, titulo: "Put the cake tin into the oven")] //Passo 6 com foto
-            passosReceita += [DescricaoPasso.init(text:"Carefully remove your pan from the oven, watch out as the water will be very hot", imagemPasso: "step7", video: "", timer: "20", indice: 7, titulo: "Remove from the oven")] //Passo 7
-            passosReceita += [DescricaoPasso.init(text:"The flan must cool for a few hours, better if you let it rest on the refrigerator overnight", imagemPasso: "", video: "", timer: "20", indice: 8, titulo: "Let it cool")] //Passo 8
+            passosReceita += [DescricaoPasso.init(text:"Melt the sugar in a pan over low heat, stiring constantly, until the sugar becomes a golden brown syrup.", imagemPasso: "", video: "step1.MOV",timer: "", indice: 1, titulo: "Melt the sugar")] //Passo 1 com video
+            passosReceita += [DescricaoPasso.init(text: "Once the sugar becomes a golden brown syrup, it`s ready. Switch the stove off.", imagemPasso: "step2",video: "", timer: "", indice: 2, titulo: "Turning off the stove")] //Passo 2 com foto
+            passosReceita += [DescricaoPasso.init(text:"Place all other ingredients into a blender, blend it for 5 minutes.", imagemPasso: "", video: "step3.MOV", timer: "300", indice: 3, titulo: "Blend the ingredients")] //Passo 3 com video
+            passosReceita += [DescricaoPasso.init(text:"Pour mixture into the pan. The pan is now with the sugar caramelized", imagemPasso: "step4", video: "", timer: "", indice: 4, titulo: "Pour the mixture into the pan")] //Passo 4 com foto
+            passosReceita += [DescricaoPasso.init(text:"Place water into a cake tin. Then, place the pan with the mixture and the caramelized sugar inside", imagemPasso: "step5", video: "", timer: "", indice: 5, titulo: "Place water into a cake tin")] //Passo 5 com foto
+            passosReceita += [DescricaoPasso.init(text:"Turn on the oven at 200 degrees and put the  cake tin inside. Let it cook for 2 hours.", imagemPasso: "step6",video: "",timer: "", indice: 6, titulo: "Put the cake tin into the oven")] //Passo 6 com foto
+            passosReceita += [DescricaoPasso.init(text:"Carefully remove your pan from the oven, watch out as the water will be very hot", imagemPasso: "step7", video: "", timer: "", indice: 7, titulo: "Remove from the oven")] //Passo 7
+            passosReceita += [DescricaoPasso.init(text:"The flan must cool for a few hours, better if you let it rest on the refrigerator overnight", imagemPasso: "", video: "", timer: "", indice: 8, titulo: "Let it cool")] //Passo 8
             passosReceita += [DescricaoPasso.init(text:"To take if off the pan, heat the pan over low heat for 20 seconds, then invert into a serving plate. Pick a proper plate as it needs to be large enough for the flan and some of the caramel", imagemPasso: "step9", video: "", timer: "20", indice: 9, titulo: "Transfer to a plate")] //Passo 9
-            passosReceita += [DescricaoPasso.init(text:"Enjoy your brazilian flan!", imagemPasso: "step10", video: "", timer: "20", indice: 10, titulo: "Enjoy your flan! 😊")]
+            passosReceita += [DescricaoPasso.init(text:"Enjoy your brazilian flan!", imagemPasso: "step10", video: "", timer: "", indice: 10, titulo: "Enjoy your flan! 😊")]
             
             //For pra cadastrar os elementos do Array em cada atributo correto do passo
             for indiceFor in 0...passosReceita.count-1 {
