@@ -254,7 +254,7 @@
                                 <rect key="frame" x="10" y="134" width="355" height="533"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellPasso" rowHeight="82" id="hht-cg-iHN" customClass="DataCellPassosTableViewCell" customModule="DummyCook" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellPasso" rowHeight="82" id="hht-cg-iHN" customClass="DataCellPassosTableViewCell" customModule="DummyCook" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="355" height="82"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hht-cg-iHN" id="qLv-fp-VHz">
@@ -451,6 +451,6 @@
         <image name="dummycooklogo" width="842" height="467"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mEV-Ws-dZj"/>
+        <segue reference="gfO-Ws-fBF"/>
     </inferredMetricsTieBreakers>
 </document>
