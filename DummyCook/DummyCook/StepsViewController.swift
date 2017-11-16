@@ -41,13 +41,15 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
     }
     
     @IBAction func pause(_ sender: Any) {
-        if self.resumeTapped == false {
+        //if self.resumeTapped == false {
             timer.invalidate()
-            self.resumeTapped = true
-        } else {
-            runTimer()
-            self.resumeTapped = false
-        }
+            isTimerRunning = false
+            //self.resumeTapped = true
+        //}
+//        else {
+//            runTimer()
+//            self.resumeTapped = false
+//        }
     }
     
     @IBAction func reset(_ sender: Any) {
@@ -255,6 +257,7 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
                     self.timer.invalidate()
                     self.resetaVoz()
                     self.isTimerRunning = false
+                    //self.resumeTapped = true
                     print("Pausou timer")
                 }
                 
