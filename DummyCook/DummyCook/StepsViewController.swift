@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Speech
 
-class StepsViewController: UIViewController {
+class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
     
     @IBOutlet weak var stepsTitle: UILabel!
     @IBOutlet weak var stepsImage: UIImageView!
@@ -17,8 +18,13 @@ class StepsViewController: UIViewController {
     @IBOutlet weak var descricaoPasso: UILabel!
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
-    // timer
     
+    let audioEngine = AVAudioEngine()
+    let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
+    var request = SFSpeechAudioBufferRecognitionRequest()
+    var recognitionTask: SFSpeechRecognitionTask?
+    
+    // timer
     var timer = Timer()
     var isTimerRunning = false
     var resumeTapped = false
@@ -71,22 +77,17 @@ class StepsViewController: UIViewController {
         verifMidia()
         descricaoPasso.text = listaDePassos2[index].texto
         progressBar.progress = setProgress()
-        if (listaDePassos2[index].timer == "") {
-            timerView.isHidden = true
-            print("should hide")
-        } else {
-            timerView.isHidden = false
-            print("should show")
-        }
     
         }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.title = "Step \(index+1) of \(listaDePassos2.count)"
-        stepsTitle.text = listaDePassos2[index].tituloDoPasso
-        verifMidia()
-        descricaoPasso.text = listaDePassos2[index].texto
-        progressBar.progress = setProgress()
+//        self.title = "Step \(index+1) of \(listaDePassos2.count)"
+//        stepsTitle.text = listaDePassos2[index].tituloDoPasso
+//        verifMidia()
+//        descricaoPasso.text = listaDePassos2[index].texto
+//        progressBar.progress = setProgress()
+        updateUI()
+        requestSpeechAuthorization()
     }
     
     
@@ -95,8 +96,10 @@ class StepsViewController: UIViewController {
         if(index != (listaDePassos2.count - 1)){
             index = index + 1
              progressBar.progress = setProgress()
-            viewWillAppear(true)
-
+            self.cancelRecording()
+            updateUI()
+            self.startRecording()
+            
             //stepsTitle.text = listaDePassos2[index].tituloDoPasso
             //stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
             //VIDEO
@@ -105,14 +108,15 @@ class StepsViewController: UIViewController {
         }
     }
     
-    
-    
     @IBAction func botaoVolta(_ sender: Any) {
         if(index != 0){
             //self.navigationController?.popViewController(animated: true)
             index = index - 1
             progressBar.progress = setProgress()
-            viewWillAppear(true)
+            self.cancelRecording()
+            updateUI()
+            self.startRecording()
+            
             //stepsTitle.text = listaDePassos2[index].tituloDoPasso
             //stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
             //VIDEO
@@ -143,9 +147,6 @@ class StepsViewController: UIViewController {
         stepsImage.isHidden = true
         stepsViewVideo.isHidden = true
         
-        
-        
-        // Hillary Srere
         if (listaDePassos2[index].timer?.isEmpty)! {
             timerView.isHidden = true
             
@@ -170,39 +171,87 @@ class StepsViewController: UIViewController {
         }
     }
     
-    /*
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if( segue.identifier == "segueProximoPasso" ) {
-            let destinoIniciaReceita = segue.destination as! StepsViewController
-            if(index != (listaDePassos2.count - 1)){
-                index = index + 1
-                destinoIniciaReceita.listaDePassos2 = listaDePassos2
-                destinoIniciaReceita.index = index
-            }
-            else{
-                print("Nao há mais passos")
-                destinoIniciaReceita.listaDePassos2 = listaDePassos2
-                destinoIniciaReceita.index = index
-            }
-        }
-        
-        if( segue.identifier == "segueVoltaPasso" ) {
-            let destinoIniciaReceita = segue.destination as! StepsViewController
-            if(index != 0){
-                index = index - 1
-                destinoIniciaReceita.listaDePassos2 = listaDePassos2
-                destinoIniciaReceita.index = index
-            }
-            else{
-                print("Nao há mais passos")
-                destinoIniciaReceita.listaDePassos2 = listaDePassos2
-                destinoIniciaReceita.index = index
-            }
-        }
-     }
-        */
-        
-    
+    func updateUI(){
+        stepsTitle.text = listaDePassos2[index].tituloDoPasso
+        verifMidia()
+        descricaoPasso.text = listaDePassos2[index].texto
+        progressBar.progress = setProgress()
+    }
 
+    
+    func startRecording() {
+        self.request = SFSpeechAudioBufferRecognitionRequest()
+        // Setup audio engine and speech recognizer
+        let node = audioEngine.inputNode// else { return }
+        let recordingFormat = node.outputFormat(forBus: 0)
+        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
+            self.request.append(buffer)
+        }
+        // Prepare and start recording
+        
+        audioEngine.prepare()
+        do {
+            try audioEngine.start()
+        } catch {
+            return print(error)
+        }
+        
+        // Analyze the speech
+        
+        recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { result, error in
+            if let result = result {
+                
+                if(result.bestTranscription.formattedString.contains("next") ||
+                    result.bestTranscription.formattedString.contains("Next")){
+                    //self.cancelRecording()
+                    //self.recognitionTask?.finish()
+                    self.botaoProximo(true)
+                    //self.cancelRecording()
+                    print("Avanca")
+                }
+                
+                if(result.bestTranscription.formattedString.contains("Back") || result.bestTranscription.formattedString.contains("back")){
+                    //self.cancelRecording()
+                    //self.recognitionTask?.finish()
+                    self.botaoVolta(true)
+                    //self.cancelRecording()
+                    print("Volta")
+                }
+            } else if let error = error {
+                print(error)
+            }
+        })
+        
+    }
+    
+    func cancelRecording() {
+        audioEngine.stop()
+        audioEngine.inputNode.removeTap(onBus: 0) //{
+        //            node.removeTap(onBus: 0)
+        //        }
+        recognitionTask?.cancel()
+        //self.recognitionTask?.finish()
+    }
+    
+    func requestSpeechAuthorization() {
+        SFSpeechRecognizer.requestAuthorization { authStatus in
+            OperationQueue.main.addOperation {
+                switch authStatus{
+                case .authorized:
+                    self.startRecording()
+                case .denied:
+                    self.cancelRecording()
+                case .restricted:
+                    self.cancelRecording()
+                case .notDetermined:
+                    self.cancelRecording()
+                }
+            }
+        }
+    }
+    
+    
+    func speechRecognitionTaskFinishedReadingAudio(_ task: SFSpeechRecognitionTask) {
+        startRecording()
+    }
 }
