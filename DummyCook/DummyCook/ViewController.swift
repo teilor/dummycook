@@ -12,14 +12,17 @@ import CoreData
 var myIndex = 0
 var recipeTitle: String = ""
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var barraPesquisa: UISearchBar!
     
     var receita: CDReceita!
     var receitasArray = [CDReceita]()
     var passosArray = [CDPasso]()
+    var dataFiltrada = [CDReceita]()
+    var estaProcurando = false
     
     
     override func viewDidLoad() {
@@ -27,6 +30,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        
+        barraPesquisa.delegate = self
+        barraPesquisa.returnKeyType = UIReturnKeyType.done
         
         // 1. pegou o delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -185,12 +191,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if estaProcurando{
+            return dataFiltrada.count
+        }
         return receitasArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellReceita = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! DataCell
-        cellReceita.data = receitasArray[indexPath.row]
+        
+        if estaProcurando{
+            cellReceita.data = dataFiltrada[indexPath.row]
+        } else {
+            cellReceita.data = receitasArray[indexPath.row]
+        }
         return cellReceita
     }
 
@@ -199,6 +213,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         performSegue(withIdentifier: "segue", sender: self)
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if(searchBar.text == nil || searchBar.text == ""){
+            estaProcurando = false
+            
+            view.endEditing(true)
+            
+            tableView.reloadData()
+        } else {
+            estaProcurando = true
+            
+            dataFiltrada = receitasArray.filter( {( receita  : CDReceita) -> Bool in
+                return (receita.nome?.contains(searchText))!
+            } )
+            
+            tableView.reloadData()
+        }
+    }
     
     
     // Quando for mudar de view vai mandar a receita selecionada para proxima view

@@ -136,6 +136,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="HwI-PM-FRK"/>
                     <connections>
+                        <outlet property="barraPesquisa" destination="GK4-qu-vAD" id="cFA-10-JUI"/>
                         <outlet property="tableView" destination="yvm-v4-99x" id="yvD-cL-tpO"/>
                         <segue destination="Mza-lG-v2u" kind="show" identifier="segue" id="8WU-m3-ZCN"/>
                     </connections>
