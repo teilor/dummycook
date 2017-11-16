@@ -29,10 +29,10 @@ class DetailsViewController: UIViewController {
         recipeTitle.text = data.nome
         textRequirements.text = data.textoRequirements
         textIngredientes.text = (data.textoIngredientes as! [String]).joined(separator: "\n")
-        startButton.layer.cornerRadius = 10
-        startButton.layer.masksToBounds = true
-        stepsButton.layer.cornerRadius = 10
-        stepsButton.layer.masksToBounds = true
+       // startButton.layer.cornerRadius = 10
+        //startButton.layer.masksToBounds = true
+        //stepsButton.layer.cornerRadius = 10
+        //stepsButton.layer.masksToBounds = true
     
     }
     
