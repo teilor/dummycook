@@ -18,11 +18,13 @@ class StepsViewController: UIViewController {
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     // timer
-    var seconds = 200
+    
     var timer = Timer()
     var isTimerRunning = false
     var resumeTapped = false
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var timerView: UIView!
+    var seconds: Int = 0
     
     // timer functions
     @IBAction func play(_ sender: Any) {
@@ -63,15 +65,24 @@ class StepsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.title = "Step \(index+1) of \(listaDePassos2.count)"
         stepsTitle.text = listaDePassos2[index].tituloDoPasso
         verifMidia()
         descricaoPasso.text = listaDePassos2[index].texto
         progressBar.progress = setProgress()
+        if (listaDePassos2[index].timer == "") {
+            timerView.isHidden = true
+            print("should hide")
+        } else {
+            timerView.isHidden = false
+            print("should show")
+        }
     
         }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.title = "Step \(index+1) of \(listaDePassos2.count)"
         stepsTitle.text = listaDePassos2[index].tituloDoPasso
         verifMidia()
         descricaoPasso.text = listaDePassos2[index].texto
@@ -85,10 +96,12 @@ class StepsViewController: UIViewController {
             index = index + 1
              progressBar.progress = setProgress()
             viewWillAppear(true)
+
             //stepsTitle.text = listaDePassos2[index].tituloDoPasso
             //stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
             //VIDEO
             //descricaoPasso.text = listaDePassos2[index].texto
+            
         }
     }
     
@@ -104,6 +117,7 @@ class StepsViewController: UIViewController {
             //stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
             //VIDEO
             //descricaoPasso.text = listaDePassos2[index].texto
+            
         }
     }
     
@@ -128,7 +142,22 @@ class StepsViewController: UIViewController {
     func verifMidia(){
         stepsImage.isHidden = true
         stepsViewVideo.isHidden = true
-     
+        
+        
+        
+        // Hillary Srere
+        if (listaDePassos2[index].timer?.isEmpty)! {
+            timerView.isHidden = true
+            
+            print("should hide")
+        } else {
+            seconds = Int(listaDePassos2[index].timer!)!
+            timerView.isHidden = false
+            print("should show")
+        }
+        
+        print(listaDePassos2[index].timer)
+        
         if(listaDePassos2[index].video?.isEmpty)!{ //Se o video for vazio
             stepsImage.isHidden = false
             stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
