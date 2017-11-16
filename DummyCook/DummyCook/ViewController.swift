@@ -42,6 +42,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // 5. Operacao de fetch
         let requestReceita =  NSFetchRequest<NSFetchRequestResult>(entityName: "CDReceita")
+        requestReceita.sortDescriptors = [NSSortDescriptor.init(key: "nome", ascending: true)]
         let requestPassos =  NSFetchRequest<NSFetchRequestResult>(entityName: "CDPasso")
         
         let resultsReceita = try! container.viewContext.fetch(requestReceita) as! [CDReceita]

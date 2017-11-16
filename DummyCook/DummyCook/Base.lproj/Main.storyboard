@@ -325,23 +325,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Melt the sugar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lIq-HA-7bg">
-                                <rect key="frame" x="10" y="129" width="355" height="20.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Melt the sugar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lIq-HA-7bg">
+                                <rect key="frame" x="10" y="126" width="355" height="31.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label Label Label Label Label Label Label LabelLabel Label Label Label Label Label Label Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20q-I2-cHo">
-                                <rect key="frame" x="10" y="168" width="355" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Label Label Label Label Label Label LabelLabel Label Label Label Label Label Label Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20q-I2-cHo">
+                                <rect key="frame" x="10" y="185.5" width="355" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="f5y-NN-hh4"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="1pe-3t-RcI">
-                                <rect key="frame" x="26" y="96" width="323" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aee-fN-YdT" userLabel="MediaView">
+                                <rect key="frame" x="10" y="315" width="358" height="201"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0h1-TE-knh" customClass="videoPlayer" customModule="DummyCook" customModuleProvider="target">
+                                        <rect key="frame" x="-6" y="14" width="355" height="168"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="fTq-Mq-4ms">
+                                        <rect key="frame" x="-6" y="0.0" width="355" height="196"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="1pe-3t-RcI">
+                                <rect key="frame" x="10" y="94" width="355" height="2"/>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cw7-Sa-3p7">
                                 <rect key="frame" x="10" y="604" width="172" height="43"/>
@@ -367,18 +382,8 @@
                                     <action selector="botaoProximo:" destination="IZS-ug-tX9" eventType="touchUpInside" id="LBN-DJ-hhg"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0h1-TE-knh" customClass="videoPlayer" customModule="DummyCook" customModuleProvider="target">
-                                <rect key="frame" x="10" y="327" width="355" height="168"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fTq-Mq-4ms">
-                                <rect key="frame" x="10" y="285" width="355" height="178"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zci-qB-NEW">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zci-qB-NEW">
                                 <rect key="frame" x="16" y="515" width="343" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IuW-Cs-ORJ">
                                         <rect key="frame" x="283" y="13" width="60" height="66"/>
@@ -419,6 +424,21 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aee-fN-YdT" firstAttribute="top" secondItem="20q-I2-cHo" secondAttribute="bottom" constant="20" id="Akn-zv-6KV"/>
+                            <constraint firstItem="lIq-HA-7bg" firstAttribute="leading" secondItem="4HR-18-Zok" secondAttribute="leading" constant="10" id="Bb5-pJ-8Ii"/>
+                            <constraint firstItem="Zci-qB-NEW" firstAttribute="top" secondItem="aee-fN-YdT" secondAttribute="bottom" constant="10" id="EBZ-I3-6F5"/>
+                            <constraint firstItem="lIq-HA-7bg" firstAttribute="top" secondItem="1pe-3t-RcI" secondAttribute="bottom" constant="30" id="FxS-0T-8pk"/>
+                            <constraint firstItem="4HR-18-Zok" firstAttribute="trailing" secondItem="lIq-HA-7bg" secondAttribute="trailing" constant="10" id="HoD-fY-EpG"/>
+                            <constraint firstItem="4HR-18-Zok" firstAttribute="trailing" secondItem="aee-fN-YdT" secondAttribute="trailing" constant="10" id="OQL-zA-rFm"/>
+                            <constraint firstAttribute="trailing" secondItem="1pe-3t-RcI" secondAttribute="trailing" constant="10" id="Pn1-jf-mrb"/>
+                            <constraint firstItem="1pe-3t-RcI" firstAttribute="top" secondItem="4HR-18-Zok" secondAttribute="top" constant="30" id="Q7p-4m-VyZ"/>
+                            <constraint firstItem="1pe-3t-RcI" firstAttribute="leading" secondItem="7Qr-1M-QvY" secondAttribute="leading" constant="10" id="iS5-Bh-YhD"/>
+                            <constraint firstItem="20q-I2-cHo" firstAttribute="leading" secondItem="4HR-18-Zok" secondAttribute="leading" constant="10" id="t59-mk-gCx"/>
+                            <constraint firstItem="aee-fN-YdT" firstAttribute="leading" secondItem="4HR-18-Zok" secondAttribute="leading" constant="10" id="wwB-qD-7Jf"/>
+                            <constraint firstItem="20q-I2-cHo" firstAttribute="top" secondItem="lIq-HA-7bg" secondAttribute="bottom" constant="28" id="yx2-sW-5OX"/>
+                            <constraint firstItem="4HR-18-Zok" firstAttribute="trailing" secondItem="20q-I2-cHo" secondAttribute="trailing" constant="10" id="zzQ-bd-EcU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4HR-18-Zok"/>
                     </view>
                     <connections>
@@ -455,6 +475,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="1" width="720" height="405"/>
         <image name="dummycooklogo" width="842" height="467"/>
     </resources>
     <inferredMetricsTieBreakers>

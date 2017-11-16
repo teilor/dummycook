@@ -48,6 +48,8 @@ class videoPlayer: UIView {
         
         player = AVPlayer(url: URL(fileURLWithPath: caminho)) //Define o caminho do video
         
+        player?.isMuted = true
+        
         playerLayer = AVPlayerLayer(player: player) //Cria o layer
         
         playerLayer?.frame = self.bounds //Define o layer pro player se limitar a View que o contém
