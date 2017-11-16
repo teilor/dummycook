@@ -22,30 +22,24 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //textoIngredientes.text = (data.textoIngredientes?.description ?? 0)
 
-        //print(data.textoIngredientes)
-        print("AQUI AQUI AQUI")
-        //print((data.textoIngredientes?.description. ?? 0))
-        //textoIngredientes.text = data.textoIngredientes?.description
-        
         imagemReceita.image = UIImage(named: data.imagemReceita!)
         imagemReceita.layer.cornerRadius = 10
         imagemReceita.layer.masksToBounds = true
         recipeTitle.text = data.nome
         textRequirements.text = data.textoRequirements
+        textIngredientes.text = (data.textoIngredientes as! [String]).joined(separator: "\n")
         startButton.layer.cornerRadius = 10
         startButton.layer.masksToBounds = true
         stepsButton.layer.cornerRadius = 10
         stepsButton.layer.masksToBounds = true
     
-        ///recipeTitle.text =
     }
     
     var data: CDReceita! {
         didSet {
             //imagemReceita.layer.cornerRadius = 20
-            print(data)
+          
             
             //let passos = data.relationship!.allObjects as! [CDPasso]
             //imagemReceita.image = UIImage(named: data.imagemReceita!)
