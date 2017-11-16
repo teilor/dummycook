@@ -180,10 +180,13 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
         if (listaDePassos2[index].timer?.isEmpty)! {
             timerView.isHidden = true
             //self.seconds = 0
+            
             self.timer.invalidate()
+            isTimerRunning = false
             print("should hide")
         } else {
-            runTimer()
+            //runTimer()
+            //self.timer.fire()
             seconds = Int(listaDePassos2[index].timer!)!
             timerView.isHidden = false
             print("should show")
