@@ -196,6 +196,18 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
         }
         self.title = "Step \(index+1) of \(listaDePassos2.count)"
         //self.seconds = 0
+        if listaDePassos2[index].indice == 1 {
+            previousButton.isHidden = true
+        } else {
+            previousButton.isHidden = false
+        }
+        
+        if listaDePassos2[index].indice == listaDePassos2.count {
+            nextButton.isHidden = true
+        } else {
+            nextButton.isHidden = false
+
+        }
         
         //timerLabel.text = timeString(time: TimeInterval(seconds))
         stepsTitle.text = listaDePassos2[index].tituloDoPasso

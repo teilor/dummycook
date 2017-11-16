@@ -200,7 +200,7 @@
                                 <rect key="frame" x="10" y="437" width="343" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -459,6 +459,8 @@
                     </view>
                     <connections>
                         <outlet property="descricaoPasso" destination="20q-I2-cHo" id="aN6-Nl-Bp1"/>
+                        <outlet property="nextButton" destination="QZi-hj-fZq" id="u45-Rx-Hby"/>
+                        <outlet property="previousButton" destination="Cw7-Sa-3p7" id="1ZI-RJ-Ot3"/>
                         <outlet property="progressBar" destination="1pe-3t-RcI" id="HfP-An-jfk"/>
                         <outlet property="stepsImage" destination="fTq-Mq-4ms" id="9C1-74-LEF"/>
                         <outlet property="stepsTitle" destination="lIq-HA-7bg" id="8po-wI-Rh8"/>
