@@ -8,8 +8,9 @@
 
 import UIKit
 import Speech
+import AVFoundation
 
-class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
+class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate, AVAudioPlayerDelegate {
     
     @IBOutlet weak var stepsTitle: UILabel!
     @IBOutlet weak var stepsImage: UIImageView!
@@ -24,6 +25,7 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
     var request = SFSpeechAudioBufferRecognitionRequest()
     var recognitionTask: SFSpeechRecognitionTask?
     
+    var player : AVAudioPlayer?
     
     // timer
     var timer = Timer()
@@ -60,7 +62,9 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
     
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
+    
         isTimerRunning = true
+        
     }
     
     @objc func updateTimer() {
@@ -70,6 +74,8 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
         }
         else{
             timer.invalidate()
+            playSound()
+            print("vai tocar o som")
         }
     }
     
@@ -78,6 +84,31 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
         let minutes = Int(time) / 60 % 60
         let seconds = Int(time) % 60
         return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+    }
+    func playSound(){
+        let path = Bundle.main.path(forResource: "radar", ofType:"mp3")!
+        let url = URL(fileURLWithPath: path)
+        
+        do {
+            let audioSession = AVAudioSession.sharedInstance()
+            
+            do {
+                try audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
+            } catch let error as NSError {
+                print("audioSession error: \(error.localizedDescription)")
+            }
+            let sound = try AVAudioPlayer(contentsOf: url)
+            self.player = sound
+            sound.numberOfLoops = 2
+            sound.volume = 1
+            sound.prepareToPlay()
+            sound.delegate = self
+            sound.play()
+            print("tocou o som")
+        } catch {
+            print("error loading file")
+            // couldn't load file :(
+        }
     }
     
     override func viewDidLoad() {

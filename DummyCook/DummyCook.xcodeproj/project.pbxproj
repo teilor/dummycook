@@ -22,6 +22,7 @@
 		877BD8911FB485AD00C0A709 /* DataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877BD8901FB485AD00C0A709 /* DataCell.swift */; };
 		87C070811FB5D96E002E69AF /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C070801FB5D96E002E69AF /* DetailsViewController.swift */; };
 		92F58CA71FB7970C00D536BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92F58CA61FB7970C00D536BF /* Assets.xcassets */; };
+		F4738A451FBE513100A1645A /* radar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4738A441FBE513100A1645A /* radar.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		877BD8901FB485AD00C0A709 /* DataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCell.swift; sourceTree = "<group>"; };
 		87C070801FB5D96E002E69AF /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		92F58CA61FB7970C00D536BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F4738A441FBE513100A1645A /* radar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = radar.mp3; path = ../../../Downloads/radar.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		87168A8A1FB478FB00B60D57 = {
 			isa = PBXGroup;
 			children = (
+				F4738A441FBE513100A1645A /* radar.mp3 */,
 				7CCF881B1FBDB2E900D18588 /* step1.mov */,
 				7CCF881C1FBDB2E900D18588 /* step3.mov */,
 				87168A951FB478FB00B60D57 /* DummyCook */,
@@ -154,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CCF881D1FBDB2E900D18588 /* step1.mov in Resources */,
+				F4738A451FBE513100A1645A /* radar.mp3 in Resources */,
 				7CCF881E1FBDB2E900D18588 /* step3.mov in Resources */,
 				87168AA41FB478FB00B60D57 /* LaunchScreen.storyboard in Resources */,
 				92F58CA71FB7970C00D536BF /* Assets.xcassets in Resources */,
