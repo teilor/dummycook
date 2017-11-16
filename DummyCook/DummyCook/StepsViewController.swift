@@ -180,8 +180,10 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
         if (listaDePassos2[index].timer?.isEmpty)! {
             timerView.isHidden = true
             //self.seconds = 0
+            self.timer.invalidate()
             print("should hide")
         } else {
+            runTimer()
             seconds = Int(listaDePassos2[index].timer!)!
             timerView.isHidden = false
             print("should show")
@@ -189,6 +191,8 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
         }
         self.title = "Step \(index+1) of \(listaDePassos2.count)"
         //self.seconds = 0
+        
+        //timerLabel.text = timeString(time: TimeInterval(seconds))
         stepsTitle.text = listaDePassos2[index].tituloDoPasso
         verifMidia()
         descricaoPasso.text = listaDePassos2[index].texto
