@@ -156,8 +156,6 @@ class StepsViewController: UIViewController {
             print("should show")
         }
         
-        print(listaDePassos2[index].timer)
-        
         if(listaDePassos2[index].video?.isEmpty)!{ //Se o video for vazio
             stepsImage.isHidden = false
             stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
