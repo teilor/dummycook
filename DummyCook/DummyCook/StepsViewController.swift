@@ -24,6 +24,7 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
     var request = SFSpeechAudioBufferRecognitionRequest()
     var recognitionTask: SFSpeechRecognitionTask?
     
+    
     // timer
     var timer = Timer()
     var isTimerRunning = false
@@ -34,7 +35,9 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
     
     // timer functions
     @IBAction func play(_ sender: Any) {
-        runTimer()
+        if(isTimerRunning == false){
+            runTimer()
+        }
     }
     
     @IBAction func pause(_ sender: Any) {
@@ -49,17 +52,23 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
     
     @IBAction func reset(_ sender: Any) {
         timer.invalidate()
-        seconds = 60
+        seconds = Int(listaDePassos2[index].timer!)!
         timerLabel.text = timeString(time: TimeInterval(seconds))
     }
     
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
+        isTimerRunning = true
     }
     
     @objc func updateTimer() {
+        if(seconds > 0){
         seconds -= 1
         timerLabel.text = timeString(time: TimeInterval(seconds))
+        }
+        else{
+            timer.invalidate()
+        }
     }
     
     func timeString(time:TimeInterval) -> String {
@@ -81,7 +90,7 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
         }
     
     override func viewWillAppear(_ animated: Bool) {
-//        self.title = "Step \(index+1) of \(listaDePassos2.count)"
+        
 //        stepsTitle.text = listaDePassos2[index].tituloDoPasso
 //        verifMidia()
 //        descricaoPasso.text = listaDePassos2[index].texto
@@ -94,6 +103,7 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
     
     @IBAction func botaoProximo(_ sender: Any) {
         if(index != (listaDePassos2.count - 1)){
+            //self.seconds = 0
             index = index + 1
              progressBar.progress = setProgress()
             self.cancelRecording()
@@ -110,17 +120,13 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
     
     @IBAction func botaoVolta(_ sender: Any) {
         if(index != 0){
+            //self.seconds = 0
             //self.navigationController?.popViewController(animated: true)
             index = index - 1
             progressBar.progress = setProgress()
             self.cancelRecording()
             updateUI()
             self.startRecording()
-            
-            //stepsTitle.text = listaDePassos2[index].tituloDoPasso
-            //stepsImage.image = UIImage(named: listaDePassos2[index].imagemPasso!)
-            //VIDEO
-            //descricaoPasso.text = listaDePassos2[index].texto
             
         }
     }
@@ -139,7 +145,6 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
     
     func verifUltimo(){
         if(index == listaDePassos2.count - 1){
-            
         }
     }
     
@@ -147,15 +152,15 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
         stepsImage.isHidden = true
         stepsViewVideo.isHidden = true
         
-        if (listaDePassos2[index].timer?.isEmpty)! {
-            timerView.isHidden = true
-            
-            print("should hide")
-        } else {
-            seconds = Int(listaDePassos2[index].timer!)!
-            timerView.isHidden = false
-            print("should show")
-        }
+//        if (listaDePassos2[index].timer?.isEmpty)! {
+//            timerView.isHidden = true
+//            //self.seconds = 0
+//            print("should hide")
+//        } else {
+//            seconds = Int(listaDePassos2[index].timer!)!
+//            timerView.isHidden = false
+//            print("should show")
+//        }
         
         if(listaDePassos2[index].video?.isEmpty)!{ //Se o video for vazio
             stepsImage.isHidden = false
@@ -172,10 +177,23 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
     }
     
     func updateUI(){
+        if (listaDePassos2[index].timer?.isEmpty)! {
+            timerView.isHidden = true
+            //self.seconds = 0
+            print("should hide")
+        } else {
+            seconds = Int(listaDePassos2[index].timer!)!
+            timerView.isHidden = false
+            print("should show")
+            timerLabel.text = timeString(time: TimeInterval(seconds))
+        }
+        self.title = "Step \(index+1) of \(listaDePassos2.count)"
+        //self.seconds = 0
         stepsTitle.text = listaDePassos2[index].tituloDoPasso
         verifMidia()
         descricaoPasso.text = listaDePassos2[index].texto
         progressBar.progress = setProgress()
+        
     }
 
     
@@ -200,6 +218,7 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
         
         recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { result, error in
             if let result = result {
+                print(result)
                 
                 if(result.bestTranscription.formattedString.contains("next") ||
                     result.bestTranscription.formattedString.contains("Next")){
@@ -217,11 +236,39 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
                     //self.cancelRecording()
                     print("Volta")
                 }
+                
+                if (result.bestTranscription.formattedString.contains("Start") || result.bestTranscription.formattedString.contains("start")){
+                    self.play(true)
+                    self.resetaVoz()
+                    print("Iniciou timer")
+                }
+                
+                
+                if (result.bestTranscription.formattedString.contains("Stop") || result.bestTranscription.formattedString.contains("stop")){
+                    self.timer.invalidate()
+                    self.resetaVoz()
+                    self.isTimerRunning = false
+                    print("Pausou timer")
+                }
+                
+                if (result.bestTranscription.formattedString.contains("Reset") || result.bestTranscription.formattedString.contains("reset")){
+                    self.reset(true)
+                    self.resetaVoz()
+                    self.isTimerRunning = false
+                    print("Resetou timer")
+                }
+                
+                
             } else if let error = error {
                 print(error)
             }
         })
         
+    }
+    
+    func resetaVoz() {
+        self.cancelRecording()
+        self.startRecording()
     }
     
     func cancelRecording() {
@@ -255,3 +302,4 @@ class StepsViewController: UIViewController, SFSpeechRecognitionTaskDelegate {
         startRecording()
     }
 }
+
