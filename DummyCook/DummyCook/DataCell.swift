@@ -21,7 +21,11 @@ class DataCell: UITableViewCell {
         didSet {
             recipeImage.layer.cornerRadius = 20
             tableViewCell.layer.cornerRadius = 20
-            
+            tableViewCell.layer.shadowColor = UIColor.black.cgColor
+            tableViewCell.layer.masksToBounds = false
+            tableViewCell.layer.shadowOffset = CGSize(width: 0.0 , height: 3.0)
+            tableViewCell.layer.shadowOpacity = 0.5
+            tableViewCell.layer.shadowRadius = 5.0
             
             recipeTitle = data.nome!
             
